@@ -123,4 +123,5 @@ dist
 .env.production.local
 
 # IDEA
-.idea/
+.idea/*
+.idea
