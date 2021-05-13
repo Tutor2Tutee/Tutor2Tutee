@@ -13,7 +13,7 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cl
     useUnifiedTopology: true,
     useFindAndModify: true,
     useCreateIndex: true,
-    dbName: 'Tutor2Tutee'
+    dbName: 'Tutor2Tutee_dev'
 }).then(() => {
     console.log('MongoDB connected!')
 }).catch((err) => {
