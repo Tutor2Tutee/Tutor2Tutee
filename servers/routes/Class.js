@@ -1,9 +1,22 @@
 const express = require('express')
+const mongoose = require('mongoose')
+
 const router = express.Router()
+
+const Class = require('../schemas/classSchema')
 
 router.get('/',
     (req,res)=>{
     console.log('requested api/class')
+    Class.find()
+        .then(data => {
+            res.status(200)
+            res.send(data)
+        })
+        .catch(err => {
+            res.status(500)
+            console.log(err)
+        })
 })
 
 router.post('/',  (req,res)=>{
