@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req,res)=> {
-    res.json({username : 'jinwoo3'} )
-})
+const _class = require('./Class')
+const user = require('./User')
+
+router.use('/class',_class)
+router.use('/user', user)
+
+
 
 module.exports = router
