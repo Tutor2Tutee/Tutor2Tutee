@@ -16,6 +16,10 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cl
     dbName: 'Tutor2Tutee_dev'
 }).then(() => {
     console.log('MongoDB connected!')
+    app.listen(port, () => {
+        console.log(`express is runnning on ${port}`)
+    })
+
 }).catch((err) => {
     console.error(err)
 })
@@ -27,6 +31,3 @@ app.use(bodyParser.json())
 // app.use(cors())
 app.use('/api', route)
 
-app.listen(port, () => {
-    console.log(`express is runnning on ${port}`)
-})
