@@ -12,6 +12,7 @@ router.get('/',
         .then(data => {
             res.status(200)
             res.send(data)
+            console.log(data)
         })
         .catch(err => {
             res.status(500)
