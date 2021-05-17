@@ -1,9 +1,11 @@
 import React from 'react'
+
 function postClass() {
     fetch('api/class', {method: "POST"}).then(() => {
         console.log('fetch completed')
     })
 }
+
 class Classes extends React.Component {
     constructor(props) {
         super(props);
@@ -12,11 +14,10 @@ class Classes extends React.Component {
     }
 
 
-
     componentDidMount() {
         fetch('api/class', {method: "GET"})
-            .then(res =>res.json())
-            .then(data => this.setState({classes : data.classes}))
+            .then(res => res.json())
+            .then(data => this.setState({classes: data.classes}))
 
     }
 
@@ -25,13 +26,19 @@ class Classes extends React.Component {
         const classes = this.state
         return (
             <>
-                <button onClick={() => {postClass()}}>Make Class</button>
-                {classes.map((_class)=>{
-                    return <li>{_class.name}</li>
-                })}
+                <button onClick={() => {
+                    postClass()
+                }}>Make Class
+                </button>
+                {classes.size > 0
+                    ? classes.map((_class) => {
+                        return <li>{_class.name}</li>
+                    })
+                    : <p>Nothing here</p>}
             </>
         )
     }
+
 }
 
 
