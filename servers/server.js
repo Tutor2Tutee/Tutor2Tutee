@@ -1,11 +1,18 @@
 require('dotenv').config()
 const express = require('express')
-const bodyParser = require('body-parser')
 // const cors = require('cors')
 const port = process.env.PORT || 3001
 const mongoose = require('mongoose')
 
 const route = require('./routes/index')
+const app = express()
+
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+// CORS 쓰고 싶으면 주석해제
+// app.use(cors())
+app.use('/api', route)
+app.set('jwt-secret', process.env.SECRET)
 
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster-1.crrhn.mongodb.net/`, {
@@ -25,9 +32,5 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cl
 })
 
 
-const app = express()
-app.use(bodyParser.json())
-// CORS 쓰고 싶으면 주석해제
-// app.use(cors())
-app.use('/api', route)
+
 

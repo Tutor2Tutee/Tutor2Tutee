@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^8.5.1"
   }
 }

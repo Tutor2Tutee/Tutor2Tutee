@@ -11,5 +11,26 @@ const userSchema = new mongoose.Schema({
     teaching: [{type: mongoose.Schema.Types.ObjectId, ref: 'Class'}],
 })
 
+
+// 스키마를 확장한다.
+userSchema.statics.create = function (email, password, nickname, birth) {
+    const user = new this({
+        email, password, nickname, birth, point: 0
+    })
+
+    return user.save()
+}
+userSchema.statics.findOneByEmail = function (email) {
+    return this.findOne({
+        email
+    }).exec()
+}
+
+userSchema.methods.verify = function (password) {
+    console.log(this.password)
+    console.log(password)
+    return this.password === password
+}
+
 module.exports = mongoose.model('User', userSchema)
 
