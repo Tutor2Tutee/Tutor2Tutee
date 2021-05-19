@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const crypto = require('crypto')
 
 const userSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
@@ -14,8 +15,13 @@ const userSchema = new mongoose.Schema({
 
 // 스키마를 확장한다.
 userSchema.statics.create = function (email, password, nickname, birth) {
+    const encrypted = crypto.createHmac('sha1', process.env.SECRET)
+        .update(password)
+        .digest('base64')
+
+
     const user = new this({
-        email, password, nickname, birth, point: 0
+        email, password:encrypted, nickname, birth, point: 0
     })
 
     return user.save()
@@ -27,9 +33,10 @@ userSchema.statics.findOneByEmail = function (email) {
 }
 
 userSchema.methods.verify = function (password) {
-    console.log(this.password)
-    console.log(password)
-    return this.password === password
+    const encrypted = crypto.createHmac('sha1', process.env.SECRET)
+        .update(password)
+        .digest('base64')
+    return this.password === encrypted
 }
 
 module.exports = mongoose.model('User', userSchema)
