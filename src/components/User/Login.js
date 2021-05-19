@@ -11,14 +11,12 @@ const LoginPage = () => {
     //     }
     // }
 
-    // 로그인을 수행하고 localStorage에 jwt-token을 저장
+    // 로그인을 수행하고 localStorage 에 jwt-token 을 저장
     const login = () => {
         fetch('/api/user/login',
             {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     email,
                     password
@@ -35,19 +33,28 @@ const LoginPage = () => {
     return (
         <form>
             <label>
-                email : <input type={'text'} value={email} onChange={(e) => {
-                setEmail(e.target.value)
-            }}/><br/>
-                password : <input type={'text'} value={password} onChange={(e) => {
-                setPassword(e.target.value)
-            }}/>
+                email :
+                <input
+                    type={'text'}
+                    value={email}
+                    onChange={e => {
+                        setEmail(e.target.value)
+                    }}
+                /><br/>
+                password :
+                <input
+                    type={'text'}
+                    value={password}
+                    onChange={e => {
+                        setPassword(e.target.value)
+                    }}/>
             </label>
 
             <button onClick={event => {
                 event.preventDefault()
                 login()
             }}>
-                <br/>SubmitButton
+                SubmitButton
             </button>
         </form>
     )
