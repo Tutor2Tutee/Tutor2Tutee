@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
-const Class = require('../schemas/classSchema');
+const Class = require('../models/classSchema');
 
 //GET
 router.get('/:id', async (req, res, next) => {
