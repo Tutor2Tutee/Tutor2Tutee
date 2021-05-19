@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 const User = require('../models/userSchema')
+const authMiddleWare = require('../middleware/auth')
 
 // 로그인
 router.post('/login', (req, res) => {
@@ -32,7 +33,7 @@ router.post('/login', (req, res) => {
         if (!user.verify(password)) {
             throw new Error("Failed to Login, password is incorrect")
         }
-        const promise = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             jwt.sign(
                 {
                     _id: user.id,
@@ -52,7 +53,7 @@ router.post('/login', (req, res) => {
                 }
             )
         })
-        return promise
+        
     }
 
     const respond = (token) => {
@@ -146,5 +147,32 @@ router.post('/register', (req, res) => {
 
 })
 
-
+router.use('/:id', authMiddleWare)
+router.get('/:id', (req,res)=> {
+    User.findOne({_id:req.params.id})
+        .then(user => {
+            if (user.email === req.decoded.email){
+                res.status(200)
+                    .json({
+                        message : 'success',
+                        email: user.email,
+                        nickname : user.nickname,
+                        birth : user.birth
+                    })
+            } else {
+                res.status(401)
+                    .json({
+                        message : 'unauthorized',
+                    })
+            }
+        })
+        .catch(err => {
+            res.status(401)
+                .json({
+                    message : 'error while find user',
+                    error : err.message
+                })
+        })
+    req.decoded.email
+})
 module.exports = router
