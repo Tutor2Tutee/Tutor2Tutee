@@ -1,5 +1,5 @@
 import React from 'react'
-import Classes from "../component/Class/Classes";
+import Classes from "../components/Class/Classes";
 
 const Class = () => {
     return (
