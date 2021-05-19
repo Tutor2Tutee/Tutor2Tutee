@@ -148,31 +148,35 @@ router.post('/register', (req, res) => {
 })
 
 router.use('/:id', authMiddleWare)
-router.get('/:id', (req,res)=> {
-    User.findOne({_id:req.params.id})
-        .then(user => {
-            if (user.email === req.decoded.email){
+router.get('/:id', (req, res) => {
+    if (req.params.id === req.decoded._id) {
+        User.findOne({_id: req.params.id})
+            .then(user => {
                 res.status(200)
                     .json({
-                        message : 'success',
+                        success: true,
+                        message: 'success to find a user : ' + user.email,
                         email: user.email,
-                        nickname : user.nickname,
-                        birth : user.birth
+                        nickname: user.nickname,
+                        birth: user.birth
                     })
-            } else {
-                res.status(401)
+
+            })
+            .catch(err => {
+                res.status(403)
                     .json({
-                        message : 'unauthorized',
+                        success: false,
+                        message: 'error while finding a user',
+                        error: err.message
                     })
-            }
-        })
-        .catch(err => {
-            res.status(401)
-                .json({
-                    message : 'error while find user',
-                    error : err.message
-                })
-        })
-    req.decoded.email
+            })
+    } else {
+        res.status(403)
+            .json({
+                success: false,
+                message: 'not a matching user'
+            })
+    }
+
 })
 module.exports = router
