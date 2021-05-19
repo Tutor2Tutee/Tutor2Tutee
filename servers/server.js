@@ -12,14 +12,14 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 // CORS 쓰고 싶으면 주석해제
 // app.use(cors())
+// morgan은 로그 기록용.
+app.use('/api',morgan('tiny'))
 app.use('/api', route)
 app.set('jwt-secret', process.env.SECRET)
 
-// morgan은 로그 기록용.
-app.use(morgan)
 
 
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster-1.crrhn.mongodb.net/`, {
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}/`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: true,
