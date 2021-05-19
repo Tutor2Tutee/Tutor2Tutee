@@ -36,7 +36,7 @@ router.post('/login', (req, res) => {
         return new Promise((resolve, reject) => {
             jwt.sign(
                 {
-                    _id: user.id,
+                    _id: user._id,
                     email: email,
                 },
                 secret,
@@ -53,21 +53,21 @@ router.post('/login', (req, res) => {
                 }
             )
         })
-        
+
     }
 
     const respond = (token) => {
         res.status(200).json({
             success: true,
-            message:'login is succesful',
+            message: 'login is succesful',
             token
         })
     }
 
     const onError = (error) => {
         res.status(403).json({
-            success:false,
-            message : error.message
+            success: false,
+            message: error.message
         })
     }
 
