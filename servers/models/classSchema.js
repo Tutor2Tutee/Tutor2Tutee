@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
-require('./userSchema')
+const User = require('./userSchema')
 
 const classSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
-    name: {type: String, required: true, unique:true},
+    name: {type: String, required: true, unique: true},
     created: {type: Date, default: Date.now},
     teacher: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
     listener: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
@@ -12,22 +12,39 @@ const classSchema = new mongoose.Schema({
 })
 
 
-
-
-classSchema.statics.create = function(_id, name, point, classType){
+classSchema.statics.create = async function (_id, name, point, classType) {
+    // 새로운 클래스
     const _class = new this({
         name,
-        teacher:_id,
+        teacher: _id,
         point,
         classType
     })
+
+    // 생성한 유저의 teaching list 에 값 추가
+    await User.updateOne(
+        {_id},
+        {$push: {teaching: _class._id}},
+    )
+
     return _class.save()
 }
 
-classSchema.statics.findByName = function(name){
+classSchema.statics.findByName = function (name) {
     return this.findOne({name}).exec()
 }
 
+classSchema.methods.attendClassById = async function (listenerID) {
+    // 이미 수강한 학생이면? return false
+    await this.updateOne(
+        {$push: {listener: listenerID}}
+    )
+
+    await User.updateOne(
+        {_id: listenerID},
+        {$push: {listening: this._id}}
+    )
+}
 
 
 module.exports = mongoose.model('Class', classSchema)

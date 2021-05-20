@@ -4,8 +4,9 @@ const router = express.Router();
 const Class = require('../models/classSchema');
 const authMiddleWare = require('../middleware/auth')
 
-//GET
-router.get('/:id', (req, res, next) => {
+//GET 'class/:id'
+// id에 해당하는 클래스 보여주기
+router.get('/:id', (req, res) => {
     // id가 정당한가요?
     if (req.params.id.length !== 24) {
         res.status(400)
@@ -60,9 +61,9 @@ router.get('/:id', (req, res, next) => {
 });
 
 
-// GET '/'
+// GET 'class/'
 // 모든 클래스를 보여주기
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
     Class.find().populate('teacher', '_id nickname email')
         .exec(((err, res1) => {
             if (err) {
@@ -83,32 +84,118 @@ router.get('/', (req, res, next) => {
 });
 
 
-//POST
-router.post('/:id', async (req, res, next) => {
-    let foundClass;
-    
-    try{
-        foundClass = await Class.findOne({id:req.params.id});
-    } catch(err){
-        return next(err)
+// POST 'class/:id'
+// id에 해당하는 강의 수강하기
+router.use('/:id', authMiddleWare)
+router.post('/:id', (req, res) => {
+    // 수강하려는 사람의 id
+    const listenerID = req.decoded._id
+
+    // id가 정당한가요?
+    if (req.params.id.length !== 24) {
+        res.status(400)
+            .json({
+                success: false,
+                message: 'wrong id format, check id length'
+            })
     }
 
-    try{
-        await foundClass.save()
-    } catch(err){
-        return next(err)
+
+    // owner는 이 강의를 수강을 못하죠!
+    const checkOwner = (_class) => {
+        if (_class.teacher.toString() === listenerID){
+            throw new Error('owner')
+        } else {
+            return _class
+        }
     }
 
-    res.status(201).json({class:foundClass})
+    // listner는 이 강의를 중복 수강을 못해요!
+    const checkListener = (_class) => {
+        if (_class.listener.includes(listenerID)){
+            throw new Error('listener')
+        } else {
+            return _class
+        }
+    }
+
+    // id와 매칭되는 클래스가 있어야해요!
+    const isItExist = (_class) => {
+        if (_class) {
+            return _class
+        } else {
+            throw new Error("id")
+        }
+    }
+
+    const attend = (_class) => {
+        // 클래스 가입에 성공하면?
+        _class.attendClassById(listenerID)
+        return _class
+    }
+
+    // response
+    const response = (_class) => {
+        res.status(201)
+            .json({
+                success: true,
+                message: 'successfully attended class : ' + _class.name
+            })
+
+    }
+
+    // 에러 핸들링
+    const onError = (error) => {
+        switch (error.message) {
+            case 'id':
+                res.status(404)
+                    .json({
+                        success: false,
+                        message: "class id doesn't exit"
+                    })
+                break
+
+            case 'owner':
+                res.status(400)
+                    .json({
+                        success: false,
+                        message : "owner can't attend it's class"
+                    })
+                break
+
+            case 'listener':
+                res.status(400)
+                    .json({
+                        success: false,
+                        message : 'already a member'
+                    })
+                break
+
+            default:
+                res.status(409)
+                    .json({
+                        success: false,
+                        message: error.message
+                    })
+        }
+    }
+
+    Class.findOne({_id: req.params.id})
+        .then(isItExist)
+        .then(checkOwner)
+        .then(checkListener)
+        .then(attend)
+        .then(response)
+        .catch(onError)
+
 });
 
 
 // POST '/'
-// class 수강
+// class 개설
 router.use('/', authMiddleWare)
 router.post('/', async (req, res, next) => {
     const {name, point, classType} = req.body
-    console.log(name)
     const userId = req.decoded._id
 
 
