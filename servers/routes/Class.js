@@ -48,26 +48,70 @@ router.post('/:id', async (req, res, next) => {
     res.status(201).json({class:foundClass})
 });
 
+
+
+// POST '/'
+// class 수강
+router.use('/', authMiddleWare)
 router.post('/', async (req, res, next) => {
-    const { name,teacherId,point,type } = req.body
+    const {name, point, classType} = req.body
+    console.log(name)
+    const userId = req.decoded._id
 
-    const newClass = new Class({
-        name,
-        // teacher:teacherId,
-        listener:[],
-        point,
-        type
-    });
 
-    newClass.id = newClass._id
 
-    try{
-        await newClass.save()
-    } catch(err){
-        return next(err)
+    // 세가지 parameter(name, point, classType)가 존재하는지 확인!
+    if (!name) {
+        res.status(400)
+            .json({
+                success: false,
+                message: 'name is empty'
+            })
+    }
+    if (!point) {
+        res.status(400)
+            .json({
+                success: false,
+                message: "point is empty"
+            })
+    }
+    if (!classType) {
+        res.status(400)
+            .json({
+                success: false,
+                message: 'classType is empty'
+            })
     }
 
-    res.status(201).json({message:"Class created successfully",class:newClass})
+    const create = (_class) => {
+        if (_class) {
+            throw new Error('class name is already exists')
+        } else {
+            return Class.create(userId, name, point, classType)
+        }
+    }
+
+    const respond = (_class) => {
+        res.status(201)
+            .json({
+                success: true,
+                message: "class '" + _class.name + "' created"
+            })
+    }
+
+    const onError = (error) => {
+        res.status(409)
+            .json({
+                success: false,
+                message: error.message
+            })
+    }
+
+    Class.findByName(name)
+        .then(create)
+        .then(respond)
+        .catch(onError)
+
 });
 
 //PUT
