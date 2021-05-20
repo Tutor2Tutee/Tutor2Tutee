@@ -1,9 +1,8 @@
 const express = require('express');
-const mongoose = require('mongoose');
-
 const router = express.Router();
 
 const Class = require('../models/classSchema');
+const authMiddleWare = require('../middleware/auth')
 
 //GET
 router.get('/:id', async (req, res, next) => {
@@ -18,14 +17,27 @@ router.get('/:id', async (req, res, next) => {
     res.status(200).json({ class: foundClass });
 });
 
-router.get('/', async (req, res, next) => {
-    let classList
-    try{
-        classList = await Class.find();
-    } catch(err){
-        return next(err)
-    }
-    res.status(200).json({ class: classList });
+
+// GET '/'
+// 모든 클래스를 보여주기
+router.get('/', (req, res, next) => {
+    Class.find().populate('teacher', '_id nickname email')
+        .exec(((err, res1) => {
+            if (err){
+                res.status(409)
+                    .json({
+                        success : false,
+                        message : err.message
+                    })
+            } else {
+                res.status(200)
+                    .json({
+                        success : true,
+                        message : 'success',
+                        classes : res1
+                    })
+            }
+        }))
 });
 
 
