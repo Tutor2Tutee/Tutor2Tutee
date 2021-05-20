@@ -99,20 +99,20 @@ router.post('/register', (req, res) => {
 
     // 각 항목이 비었는지 확인
     if (!email) {
-        return res.status(403).json({
+        return res.status(400).json({
             success: false,
             message: 'email is empty'
         })
     }
     if (!password) {
-        return res.status(403).json({
+        return res.status(400).json({
             success: false,
             message: 'password is empty'
         })
     }
 
     if (!nickname) {
-        return res.status(403).json({
+        return res.status(400).json({
             success: false,
             message: 'nickname is empty'
         })
@@ -136,6 +136,7 @@ router.post('/register', (req, res) => {
 
     const onError = (error) => {
         res.status(409).json({
+            success: false,
             message: error.message
         })
     }
@@ -156,6 +157,7 @@ router.get('/:id', (req, res) => {
                     .json({
                         success: true,
                         message: 'success to find a user : ' + user.email,
+                        _id : user._id,
                         email: user.email,
                         nickname: user.nickname,
                         birth: user.birth
