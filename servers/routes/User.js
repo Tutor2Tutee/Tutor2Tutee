@@ -12,13 +12,13 @@ router.post('/login', (req, res) => {
 
     // 각 항목이 비었는지 확인
     if (!email) {
-        return res.status(403).json({
+        return res.status(400).json({
             success: false,
             message: 'email is empty'
         })
     }
     if (!password) {
-        return res.status(403).json({
+        return res.status(400).json({
             success: false,
             message: 'password is empty'
         })
@@ -65,7 +65,7 @@ router.post('/login', (req, res) => {
     }
 
     const onError = (error) => {
-        res.status(403).json({
+        res.status(409).json({
             success: false,
             message: error.message
         })
