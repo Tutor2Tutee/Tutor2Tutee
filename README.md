@@ -9,4 +9,6 @@
 
 ## TODO 🔥
 - [ ] Heroku or AWS Cloud에 서비스
+- [ ] kubernates or docker로 컨테이너에 담은 뒤 서비스
+- [ ] 최대한 restful한 API서버
 - [ ] 🔧
