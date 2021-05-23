@@ -31,30 +31,32 @@ const LoginPage = () => {
     }
 
     return (
-        <form>
-            <label>
-                email :
+        <form className="form">
+            <label htmlFor="email">
+                email :</label>
                 <input
+                id="email"
                     type={'text'}
                     value={email}
                     onChange={e => {
                         setEmail(e.target.value)
                     }}
                 /><br/>
-                password :
+            <label htmlFor="password">password :
+            </label>    
                 <input
+                id="password"
                     type={'text'}
                     value={password}
                     onChange={e => {
                         setPassword(e.target.value)
                     }}/>
-            </label>
 
             <button onClick={event => {
                 event.preventDefault()
                 login()
             }}>
-                SubmitButton
+                Submit
             </button>
         </form>
     )

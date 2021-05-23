@@ -1,6 +1,6 @@
 const Logout = () => {
     return (
-        <button onClick={event => {
+        <button className="header__container--btn" onClick={event => {
             // event.preventDefault()
             localStorage.removeItem('t2t-token')
         }}>Logout</button>
