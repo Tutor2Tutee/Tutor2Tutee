@@ -28,41 +28,45 @@ const Register = () => {
     }
 
     return (
-        <form>
-            <label>email :
+        <form className="form">
+            
+            <label htmlFor="email">email :</label>
             <input
+            id="email"
                 type={'text'}
                 value={email}
                 onChange={event => {setEmail(event.target.value)}}
             />
-            </label>
             <br/>
-            <label>
-                password :
+            <label htmlFor="password">
+                password :</label>
                 <input
+                id="password"
                     type = {'text'}
                     value = {password}
                     onChange={event => {setPassword(event.target.value)}}
                 />
-            </label>
+            
             <br/>
-            <label>
-                nickname :
+            <label htmlFor="nickname">
+                nickname :</label>
                 <input
+                id="nickname"
                     type={'text'}
                     value={nickname}
                     onChange={event => {setNickname(event.target.value)}}
                     />
-            </label>
+            
             <br/>
-            <label>
-                birth (YYYY-MM-DD) :
+            <label htmlFor="dob">
+                birth (YYYY-MM-DD) :</label>
                 <input
+                    id="dob"
                     type={'text'}
                     value = {birth}
                     onChange={event => {setBirth(event.target.value)}}
                     />
-            </label>
+            
             <br/>
             <button onClick={event => {
                 event.preventDefault()

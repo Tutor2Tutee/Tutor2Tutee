@@ -2,9 +2,10 @@ import React from 'react'
 import Logout from './User/Logout'
 const Header = () => {
     return (
-        <>
-            <p>This is Header<Logout/></p>
-        </>
+        <div className="header__container">
+            <p>This is Header</p>
+            <Logout/>
+        </div>
     )
 }
 
