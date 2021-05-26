@@ -1,9 +1,17 @@
 import React, {useState} from 'react'
-
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import * as actionCreator from './../../store/actions/auth'
 
 const LoginPage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const dispatch = useDispatch()
+
+    const onAuthenticated = (token) => {
+        dispatch(actionCreator.authChecker(token))
+    }
 
     // const enterKey = () => {
     //     if (window.Event.keyCode === 13) {
@@ -26,8 +34,15 @@ const LoginPage = () => {
             .then(response => {
                 if (response.token) {
                     localStorage.setItem('t2t-token', response.token)
+                    onAuthenticated(response.token)
                 }
             })
+    }
+
+    const isAuth = useSelector(state => state.auth.isAuthenticated)
+
+    if(isAuth){
+        return <Redirect to="/user/dashboard" />
     }
 
     return (

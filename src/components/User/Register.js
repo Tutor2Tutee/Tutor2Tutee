@@ -1,4 +1,6 @@
 import {useState} from "react";
+import { useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -25,6 +27,12 @@ const Register = () => {
                     console.log('response is 201')
                 }
             })
+    }
+
+    const isAuth = useSelector(state => state.auth.isAuthenticated)
+
+    if(isAuth){
+        return <Redirect to="/user/dashboard" />
     }
 
     return (

@@ -7,9 +7,10 @@ const Home = () => {
             <h2>
                 This is Home
             </h2>
-            <Link to={'user/login'}>Login</Link>
-            <br/>
-            <Link to={'user/register'}>Register</Link>
+            <div className="homepage__link--container">
+                <Link to={'user/login'}>Login</Link>
+                <Link to={'user/register'}>Register</Link>
+            </div>
 
         </div>
     )

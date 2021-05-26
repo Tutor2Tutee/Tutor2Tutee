@@ -3,9 +3,20 @@ import ReactDOM from 'react-dom';
 import Root from "./client/Root";
 
 import reportWebVitals from './reportWebVitals';
+import { createStore,combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import authReducer from './store/reducers/auth'
+
+const rootReducer = combineReducers({
+  auth:authReducer
+})
+
+const store = createStore(rootReducer)
 
 ReactDOM.render(
-  <Root />,
+  <Provider store={store}>
+    <Root />
+  </Provider>,
   document.getElementById('root')
 );
 
