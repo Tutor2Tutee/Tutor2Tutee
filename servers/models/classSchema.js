@@ -34,7 +34,7 @@ classSchema.statics.findByName = function (name) {
     return this.findOne({name}).exec()
 }
 
-classSchema.methods.attendClassById = async function (listenerID) {
+classSchema.methods.registerClassById = async function (listenerID) {
     // 이미 수강한 학생이면? return false
     await this.updateOne(
         {$push: {listener: listenerID}}
