@@ -49,17 +49,18 @@ router.post('/login', (req, res) => {
                     if (err) {
                         reject(err)
                     }
-                    resolve(token)
+                    resolve({token, user})
                 }
             )
         })
 
     }
 
-    const respond = (token) => {
+    const respond = ({token, user}) => {
         res.status(200).json({
             success: true,
             message: 'login is succesful',
+            user : user._id,
             token
         })
     }
