@@ -1,14 +1,18 @@
-# Tutor2Tutee-Advanced
-대학생용 지식공유 플랫폼입니다. 전작인 Tutor2Tutee를 개선하였습니다.
+# Tutor2Tutee-Advanced(T2T)
+Knowledge Sharing Platform
+
+1. It has 4 class types (offline meeting, online recorded video, online Q&A, online realtime meeting(Skype or Zoom) )
+2. It has attendance checking service to evaluate tutee
+3. It has tutor rating system, used by tutee to improve class quality
 
 
-## Tutor2Tutee(2020)과 달라진점 🛠
-1. JWT-token 도입
-2. Front-End 와 Back-End 통합관리
-3. Mongo Atlas 도입
+## Changes after [`Tutor 2 Tutee`](https://github.com/jinwoo1225/Tutor2Tutee) 🛠
+1. Implementation of JWT-token
+2. Full-stacked
+3. Implementationo of Mongo Atlas
 
 ## TODO 🔥
-- [ ] Heroku or AWS Cloud에 서비스
-- [ ] kubernates or docker로 컨테이너에 담은 뒤 서비스
-- [ ] 최대한 restful한 API서버
-- [ ] 🔧
+- [ ] Service to Heroku or AWS Cloud
+- [ ] Service by Docker
+- [ ] RESTful Server
+- [ ] Coming soon🔧
