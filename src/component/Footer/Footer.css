@@ -1,0 +1,13 @@
+.footer__container{
+    height:6vh;
+    background-color: var(--light-primary-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer__p{
+    font-size: 1.25rem;
+    letter-spacing: .75rem;
+    font-weight: bold;
+}
