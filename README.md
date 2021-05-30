@@ -1,4 +1,6 @@
 # Tutor2Tutee-Advanced(T2T)
+[![Node.js CI](https://github.com/jinwoo1225/Tutor2Tutee-Advanced/actions/workflows/node.js.yml/badge.svg)](https://github.com/jinwoo1225/Tutor2Tutee-Advanced/actions/workflows/node.js.yml)
+
 Knowledge Sharing Platform
 
 1. It has 4 class types (recorded video, Q&A, **offline or online** realtime meeting(Skype or Zoom) )
