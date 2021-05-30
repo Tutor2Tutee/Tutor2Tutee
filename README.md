@@ -12,7 +12,7 @@ Knowledge Sharing Platform
 3. Implementationo of Mongo Atlas
 
 ## TODO 🔥
-- [ ] Service to Heroku or AWS Cloud
+- [x] Service to Heroku or AWS Cloud (https://tutor2tutee.herokuapp.com)
 - [ ] Service by Docker
 - [ ] RESTful Server
 - [ ] Coming soon🔧
