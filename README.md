@@ -1,5 +1,6 @@
 # Tutor2Tutee-Advanced(T2T)
 [![Node.js CI](https://github.com/jinwoo1225/Tutor2Tutee-Advanced/actions/workflows/node.js.yml/badge.svg)](https://github.com/jinwoo1225/Tutor2Tutee-Advanced/actions/workflows/node.js.yml)
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=tutor2tutee&style=flat)
 
 Knowledge Sharing Platform
 
