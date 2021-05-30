@@ -10,14 +10,13 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-// CORS 쓰고 싶으면 주석해제
+// if want to use CORS just uncomment it
 // app.use(cors())
-// morgan은 로그 기록용.
+// morgan is for log purpose
 app.use('/api',morgan('tiny'))
 
 app.use('/api', route)
 app.set('jwt-secret', process.env.SECRET)
-console.log(__dirname + '/../build')
 app.use(express.static(__dirname + '/../build'))
 
 
