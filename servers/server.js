@@ -14,9 +14,11 @@ app.use(express.urlencoded({extended:false}))
 // app.use(cors())
 // morgan은 로그 기록용.
 app.use('/api',morgan('tiny'))
+
 app.use('/api', route)
 app.set('jwt-secret', process.env.SECRET)
-
+console.log(__dirname + '/../build')
+app.use(express.static(__dirname + '/../build'))
 
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}/`, {
