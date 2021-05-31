@@ -1,0 +1,64 @@
+.feature__container{
+    min-height: 85vh;
+}
+
+.feature__main{
+    display: flex;
+    padding: 0 10rem;
+    height: 50rem;
+}
+
+.feature__info--container,.feature__banner{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature__info--paddingleft{
+    padding-left: 5rem;
+}
+
+.feature__info{
+    padding-bottom: 10rem;
+}
+
+.feature__h1{
+    font-size: 3rem;
+    color: var(--light-primary-black);
+}
+
+.feature__p{
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    font-weight: bold;
+    color: var(--light-secondary-grey);
+}
+
+.feature__button{
+    margin: .5rem 0;
+    display: inline-block;
+    color: var(--night-primary-purple);
+    text-decoration: none;
+    padding:1rem 1.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: 2px solid var(--night-primary-purple);
+    border-radius: 10px;
+    transition: all .4s;
+}
+
+.feature__button:hover{
+    background-color:var(--night-primary-purple);
+    color: white;
+
+}
+
+.feature__banner--img{
+    width: 100%;
+}
+
+.feature__banner--img__attendence{
+    width: 60%;
+}
