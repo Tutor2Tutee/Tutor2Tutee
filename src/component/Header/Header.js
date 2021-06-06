@@ -10,7 +10,7 @@ const Header = (props) => {
             <nav className="header__nav">
                 <ul className="header__ul">
                     <NavLink href="/" >Home</NavLink>
-                    <NavLink href="/classes" >Classes</NavLink>
+                    <NavLink href="/class" >Classes</NavLink>
                     <NavLink href="/feature" >Feature</NavLink>
                     <NavLink href="/about" >About</NavLink>
                     <NavLink href="/login" >Login</NavLink>
