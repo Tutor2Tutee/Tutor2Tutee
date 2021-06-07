@@ -53,6 +53,7 @@
 }
 
 .about__card{
+    border: 2px solid var(--light-primary-grey);
     border-radius: 5px;
     box-shadow: 0 1rem 2rem rgba(0,0,0,.4);
     padding:2rem;
@@ -86,4 +87,43 @@
 
 .about__card a img{
     width: 80%;
+}
+
+@media(max-width:500px){
+    .about__main--p{
+        width: 50rem;
+    }
+    .about__card{
+        margin: 5rem 1rem;
+    }
+}
+
+@media(max-width:450px){
+    .about__main--p{
+        width: 45rem;
+    }
+    .about__card{
+        width: 45rem;
+        margin: 5rem 1rem;
+    }
+}
+
+@media(max-width:375px){
+    .about__main--p{
+        width: 40rem;
+    }
+    .about__card{
+        width: 40rem;
+        margin: 5rem 1rem;
+    }
+}
+
+@media(max-width:325px){
+    .about__main--p{
+        width: 37.5rem;
+    }
+    .about__card{
+        width: 37.5rem;
+        margin: 5rem 1rem;
+    }
 }
