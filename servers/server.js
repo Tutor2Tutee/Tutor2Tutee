@@ -6,18 +6,24 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 
 const route = require('./routes/index')
+const path = require("path");
 const app = express()
 
 app.use(express.json())
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended: false}))
 // if want to use CORS just uncomment it
 // app.use(cors())
 // morgan is for log purpose
-app.use('/api',morgan('tiny'))
+const buildPath = path.normalize(path.join(__dirname + '/../build'))
+app.use(express.static(buildPath))
+
+app.get('(/*)?', async (req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'))
+})
 
 app.use('/api', route)
+app.use('/api', morgan('tiny'))
 app.set('jwt-secret', process.env.SECRET)
-app.use(express.static(__dirname + '/../build'))
 
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}/`, {

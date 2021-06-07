@@ -1,0 +1,30 @@
+.class__container{
+    min-height: 85vh;
+}
+
+.class__make--button{
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+}
+.class__make--button button{
+    padding: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    border:none;
+    cursor: pointer;
+    transition: all .4s;
+    background-color: var(--night-primary-purple);
+    color: var(--light-primary-white);
+}
+
+.class__make--button button:hover{
+    background-color: var(--night-secondary-purple-dark-1);
+}
+
+.class__main--ul{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
