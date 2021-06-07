@@ -40,3 +40,9 @@
     font-weight: bold;
     color:var(--light-secondary-grey);
 }
+
+@media(max-width:345px){
+    .signup__form{
+        width: 40rem;
+    }
+}

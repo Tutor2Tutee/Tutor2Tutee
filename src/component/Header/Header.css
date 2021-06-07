@@ -25,9 +25,20 @@
     font-size: 2.5rem;
 }
 
-.header__ul{
-    list-style: none;
-    display: flex;
-    align-items: center;
-    margin-right: .75rem;
+.header_toggle--btn{
+    padding-right: 10px;
+    display: none;
+}
+
+.header_toggle--btn div{
+    width: 30px;
+    height: 3px;
+    background-color: var(--light-primary-black);
+    margin: 6px 0;
+}
+
+@media(max-width:600px){
+    .header_toggle--btn{
+        display: inline-block;
+    }
 }

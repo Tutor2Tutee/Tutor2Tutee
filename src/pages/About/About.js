@@ -24,6 +24,16 @@ const Home = () => {
                     </a>
                 </div>
             </div>
+            <div className="about__main" style={{padding:'0'}}>
+                <h1>Contributor</h1> 
+                <div className="about__card">
+                    <h1>Nikhil Sharma</h1>
+                    <p>Student at Reva University</p>
+                    <a href="https://github.com/NikhilSharma03" target="_blank" rel="noreferrer">
+                        <img src={ImgSrc.githubWhite} alt="github" />
+                    </a>
+                </div>
+            </div>
         </section>
     )
 }
