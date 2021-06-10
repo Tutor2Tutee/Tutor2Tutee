@@ -75,7 +75,7 @@ const Login = () => {
                 <InputField
                 value={password}
                 type="password"
-                placeholder={language === "kor" ? "암호" : "Password"}
+                placeholder={language === "kor" ? "비밀번호" : "Password"}
                 onChange={(event) => setPassword(event.target.value)}
                 />
                 <InputField
@@ -87,10 +87,10 @@ const Login = () => {
                 <InputField
                 value={birth}
                 type="text"
-                placeholder="Birth (YYYY-MM-DD)"
+                placeholder={language === "kor" ? "생일(YYYY-MM-DD)" : "Birth (YYYY-MM-DD)"}
                 onChange={(event) => setBirth(event.target.value)}
                 />
-                <p className="signup__form--p">{language === "kor" ? "이미 사용자입니다" : "Already a User, you can"} <Link to="/login">{language === "kor" ? "로그인" : "Login"}</Link> {language === "kor" ? "여기" : "here"}.</p>
+                <p className="signup__form--p">{language === "kor" ? "이미 회원가입이 되어있으시면 " : "Already a User, you can"} <Link to="/login">{language === "kor" ? "로그인" : "Login"}</Link> {language === "kor" ? "하세요!" : "here"}.</p>
                 <button className="signup__form--button" type="submit">{language === "kor" ? "레지스터" : "Register"}</button>
             </form>
         </section>
