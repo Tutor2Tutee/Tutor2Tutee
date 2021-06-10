@@ -8,25 +8,26 @@ import NavLink from './../UI/NavLink/NavLinks'
 
 const SideDrawer = (props) => {
     let isAuth = useSelector(state => state.auth.isAuthenticated)
+    let language = useSelector(state => state.lang.language)
 
     const Drawer = (
         <nav style={{transform:props.showSD ? 'translateX(0)':'translateX(-120%)'}} className="sidedrawer__container">
             <ul onClick={props.toggleSD}>
-                <NavLink sd={true} href="/" >Home</NavLink>
-                <NavLink sd={true} href="/feature" >Feature</NavLink>
-                <NavLink sd={true} href="/about" >About</NavLink>
+                <NavLink sd={true} href="/" >{language === "kor" ? "홈페이지" : "Home"}</NavLink>
+                <NavLink sd={true} href="/feature" >{language === "kor" ? "특색" :"Feature"}</NavLink>
+                <NavLink sd={true} href="/about" >{language === "kor" ? "약" :"About"}</NavLink>
                 {
                     isAuth && (<React.Fragment> 
-                    <NavLink sd={true} href="/classes" >Classes</NavLink>
-                    <NavLink sd={true} href="/logout" >Logout</NavLink>
+                    <NavLink sd={true} href="/class" >{language === "kor" ? "클래스" : "Classes"}</NavLink>
+                    <NavLink sd={true} href="/logout" >{language === "kor" ? "로그 아웃" : "Logout"}</NavLink>
                     </React.Fragment>
                     )
                 }
                 {
                     !isAuth && (
                     <React.Fragment>
-                    <NavLink sd={true} href="/login" >Login</NavLink>
-                    <NavLink sd={true} href="/signup" >Signup</NavLink>
+                    <NavLink sd={true} href="/login" >{language === "kor" ? "로그인" : "Login"}</NavLink>
+                    <NavLink sd={true} href="/signup" >{language === "kor" ? "레지스터" : "Signup"}</NavLink>
                     </React.Fragment>
                     )
                 }

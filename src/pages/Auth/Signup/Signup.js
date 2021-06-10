@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import './Signup.css';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import * as actionCreator from './../../../store/actions/auth'
 
 import InputField from './../../../component/UI/InputField/InputField';
 
@@ -26,6 +24,8 @@ const Login = () => {
     const [nickname, setNickname] = useState('');
     const [birth, setBirth] = useState('');
     const [error, setError] = useState("")
+
+    let language = useSelector(state => state.lang.language)
 
     const onSubmitHandler = (event) => {
         event.preventDefault()
@@ -69,19 +69,19 @@ const Login = () => {
                 <InputField
                 value={email}
                 type="email"
-                placeholder="Email"
+                placeholder={language === "kor" ? "이메일" :"Email"}
                 onChange={(event) => setEmail(event.target.value)}
                 />
                 <InputField
                 value={password}
                 type="password"
-                placeholder="Password"
+                placeholder={language === "kor" ? "암호" : "Password"}
                 onChange={(event) => setPassword(event.target.value)}
                 />
                 <InputField
                 value={nickname}
                 type="text"
-                placeholder="Nickname"
+                placeholder={language === "kor" ? "별명" : "Nickname"}
                 onChange={(event) => setNickname(event.target.value)}
                 />
                 <InputField
@@ -90,8 +90,8 @@ const Login = () => {
                 placeholder="Birth (YYYY-MM-DD)"
                 onChange={(event) => setBirth(event.target.value)}
                 />
-                <p className="signup__form--p">Already a User, you can <Link to="/login">Login</Link> here.</p>
-                <button className="signup__form--button" type="submit">Register</button>
+                <p className="signup__form--p">{language === "kor" ? "이미 사용자입니다" : "Already a User, you can"} <Link to="/login">{language === "kor" ? "로그인" : "Login"}</Link> {language === "kor" ? "여기" : "here"}.</p>
+                <button className="signup__form--button" type="submit">{language === "kor" ? "레지스터" : "Register"}</button>
             </form>
         </section>
     );

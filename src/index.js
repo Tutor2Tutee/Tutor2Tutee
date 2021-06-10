@@ -6,9 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { createStore,combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import authReducer from './store/reducers/auth'
+import langReducer from './store/reducers/language'
 
 const rootReducer = combineReducers({
-  auth:authReducer
+  auth:authReducer,
+  lang:langReducer,
 })
 
 const store = createStore(rootReducer)
