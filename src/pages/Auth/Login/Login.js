@@ -77,10 +77,10 @@ const Login = () => {
                 <InputField
                 value={password}
                 type="password"
-                placeholder={language === "kor" ? "암호" : "Password"}
+                placeholder={language === "kor" ? "비밀번호" : "Password"}
                 onChange={(event) => setPassword(event.target.value)}
                 />
-                <p className="login__form--p">{language === "kor" ? "새로운 사용자? 좋습니다" : "New User? Great, you can "}<Link to="/signup">{language === "kor" ? "레지스터" : "Register"}</Link> {language === "kor" ? "여기" : "here."}</p>
+                <p className="login__form--p">{language === "kor" ? "회원이 아니라구요? 그럼 " : "New User? Great, you can "}<Link to="/signup">{language === "kor" ? "회원가입" : "Register"}</Link> {language === "kor" ? "하세요!" : "here."}</p>
                 <button className="login__form--button" type="submit">{language === "kor" ? "로그인" : "Login"}</button>
             </form>
         </section>
