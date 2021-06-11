@@ -5,6 +5,7 @@ import recordedVideo from './../assets/recorded_video.png'
 import rating from './../assets/rating.png'
 import github from './../assets/GitHub_Logo.png'
 import githubWhite from './../assets/GitHub_Logo_White.png'
+import translate from './../assets/translation.png'
 
 export default {
     homeBanner:HomeBanner,
@@ -13,5 +14,6 @@ export default {
     recordedVideo,
     rating,
     github,
-    githubWhite
+    githubWhite,
+    translate
 }

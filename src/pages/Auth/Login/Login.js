@@ -24,6 +24,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState("")
+    let language = useSelector(state => state.lang.language)
+
 
     const dispatch = useDispatch()
 
@@ -69,17 +71,17 @@ const Login = () => {
                 <InputField
                 value={email}
                 type="email"
-                placeholder="Email"
+                placeholder={language === "kor" ? "이메일" :"Email"}
                 onChange={(event) => setEmail(event.target.value)}
                 />
                 <InputField
                 value={password}
                 type="password"
-                placeholder="Password"
+                placeholder={language === "kor" ? "비밀번호" : "Password"}
                 onChange={(event) => setPassword(event.target.value)}
                 />
-                <p className="login__form--p">New User? Great, you can <Link to="/signup">Register</Link> here.</p>
-                <button className="login__form--button" type="submit">Login</button>
+                <p className="login__form--p">{language === "kor" ? "회원이 아니라구요? 그럼 " : "New User? Great, you can "}<Link to="/signup">{language === "kor" ? "회원가입" : "Register"}</Link> {language === "kor" ? "하세요!" : "here."}</p>
+                <button className="login__form--button" type="submit">{language === "kor" ? "로그인" : "Login"}</button>
             </form>
         </section>
     );

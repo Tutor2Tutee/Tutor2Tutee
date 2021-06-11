@@ -5,7 +5,7 @@
     margin-right: .75rem;
 }
 
-@media(max-width:600px){
+@media(max-width:675px){
     .header__nav{
         display: none;
     }
