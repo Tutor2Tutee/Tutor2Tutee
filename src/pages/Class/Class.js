@@ -3,6 +3,8 @@ import "./Class.css"
 import ClassCard from './../../component/ClassCard/ClassCard'
 import { connect } from 'react-redux'
 
+import Locale from './../../locale/language.json'
+
 class Class extends React.Component{
     state = {
         classes: [
@@ -34,7 +36,7 @@ class Class extends React.Component{
         return (
             <div className="class__container">
                 <div className="class__make--button">
-                    <button onClick={this.postClass}>{this.props.language === "kor" ? "수업 만들기" :"Make Class"}</button>
+                    <button onClick={this.postClass}>{Locale.class.class_heading[this.props.language]}</button>
                 </div>
                 <ul className="class__main--ul">
                     {this.state.classes.map(item => <ClassCard title={item.title} date={item.date} />)}

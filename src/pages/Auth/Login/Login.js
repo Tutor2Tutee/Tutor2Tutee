@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom'
 import * as actionCreator from './../../../store/actions/auth'
 
 import InputField from './../../../component/UI/InputField/InputField';
+import Locale from './../../../locale/language.json'
 
 const inputValidator = (field) => {
     let isValid = true
@@ -71,17 +72,17 @@ const Login = () => {
                 <InputField
                 value={email}
                 type="email"
-                placeholder={language === "kor" ? "이메일" :"Email"}
+                placeholder={Locale.login.login_email[language]}
                 onChange={(event) => setEmail(event.target.value)}
                 />
                 <InputField
                 value={password}
                 type="password"
-                placeholder={language === "kor" ? "비밀번호" : "Password"}
+                placeholder={Locale.login.login_password[language]}
                 onChange={(event) => setPassword(event.target.value)}
                 />
-                <p className="login__form--p">{language === "kor" ? "회원이 아니라구요? 그럼 " : "New User? Great, you can "}<Link to="/signup">{language === "kor" ? "회원가입" : "Register"}</Link> {language === "kor" ? "하세요!" : "here."}</p>
-                <button className="login__form--button" type="submit">{language === "kor" ? "로그인" : "Login"}</button>
+                <p className="login__form--p">{Locale.login.login_signup_redirect_1[language]}<Link to="/signup">{Locale.login.login_signup_redirect_2[language]}</Link> {Locale.login.login_signup_redirect_3[language]}</p>
+                <button className="login__form--button" type="submit">{Locale.login.login_button[language]}</button>
             </form>
         </section>
     );

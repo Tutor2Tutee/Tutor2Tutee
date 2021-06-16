@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import ImgSrc from './../../shared/ImgSrc'
 import { useSelector } from 'react-redux'
 
+import Locale from './../../locale/language.json'
+
 const Home = () => {
     let language = useSelector(state => state.lang.language)
 
@@ -12,9 +14,9 @@ const Home = () => {
             <div className="home__main">
                 <div className="home__info--container">
                     <div className="home__info">
-                        <h1 className="home__h1">{language === "kor" ? "대학생용 지식공유 플랫폼" :"Student Oriented Learning & Teaching Platform"}</h1>
-                        <p className="home__p">{language === "kor" ? "Tutee에서 Tutor까지, 무엇이든 할 수 있어요!" : "From Tutee to Tutor, You can do anything"}</p>
-                        <Link to="/login" className="home__button" >{language === "kor" ? "시작하기" : "Get Started"}</Link>
+                        <h1 className="home__h1">{Locale.home.home_heading[language]}</h1>
+                        <p className="home__p">{Locale.home.home_para[language]}</p>
+                        <Link to="/login" className="home__button" >{Locale.home.home_button[language]}</Link>
                     </div>
                 </div>
                 <div className="home__banner">

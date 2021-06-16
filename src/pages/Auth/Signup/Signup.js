@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
 import InputField from './../../../component/UI/InputField/InputField';
+import Locale from './../../../locale/language.json'
 
 const inputValidator = (field) => {
     let isValid = true
@@ -69,29 +70,29 @@ const Login = () => {
                 <InputField
                 value={email}
                 type="email"
-                placeholder={language === "kor" ? "이메일" :"Email"}
+                placeholder={Locale.signup.signup_email[language]}
                 onChange={(event) => setEmail(event.target.value)}
                 />
                 <InputField
                 value={password}
                 type="password"
-                placeholder={language === "kor" ? "비밀번호" : "Password"}
+                placeholder={Locale.signup.signup_password[language]}
                 onChange={(event) => setPassword(event.target.value)}
                 />
                 <InputField
                 value={nickname}
                 type="text"
-                placeholder={language === "kor" ? "별명" : "Nickname"}
+                placeholder={Locale.signup.signup_nickname[language]}
                 onChange={(event) => setNickname(event.target.value)}
                 />
                 <InputField
                 value={birth}
                 type="text"
-                placeholder={language === "kor" ? "생일(YYYY-MM-DD)" : "Birth (YYYY-MM-DD)"}
+                placeholder={Locale.signup.signup_birth[language]}
                 onChange={(event) => setBirth(event.target.value)}
                 />
-                <p className="signup__form--p">{language === "kor" ? "이미 회원가입이 되어있으시면 " : "Already a User, you can"} <Link to="/login">{language === "kor" ? "로그인" : "Login"}</Link> {language === "kor" ? "하세요!" : "here"}.</p>
-                <button className="signup__form--button" type="submit">{language === "kor" ? "레지스터" : "Register"}</button>
+                <p className="signup__form--p">{Locale.signup.signup_login_redirect_1[language]} <Link to="/login">{Locale.signup.signup_login_redirect_2[language]}</Link> {Locale.signup.signup_login_redirect_3[language]}.</p>
+                <button className="signup__form--button" type="submit">{Locale.signup.signup_button[language]}</button>
             </form>
         </section>
     );
