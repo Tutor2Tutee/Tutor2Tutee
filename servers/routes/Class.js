@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
 // authorization required
 router.use('/', authMiddleWare)
 router.post('/', (req, res) => {
-    const {name, point, classType} = req.body
+    const {name, point, classType, description} = req.body
     const userId = req.decoded._id
 
 
@@ -59,13 +59,20 @@ router.post('/', (req, res) => {
                 message: 'classType is empty'
             })
     }
+    if (!description) {
+        res.status(400)
+            .json({
+                success: false,
+                message: "description is empty"
+            })
+    }
 
     // 클래스가 이미 존재하는 지 확인.
     const create = (_class) => {
         if (_class) {
             throw new Error('class name is already exists')
         } else {
-            return Class.create(userId, name, point, classType)
+            return Class.create(userId, name, point, classType, description)
         }
     }
 
@@ -265,7 +272,7 @@ router.put('/:id', (req, res) => {
     // 201 : Modifed
     // 204 : Not Modified <- no body
     // 200 : Not Modified <- with body
-    const {name, point, type} = req.body
+    const {name, point, type, description} = req.body
     const teacherID = req.decoded._id
 
     // is request.parameter correct?
@@ -278,7 +285,7 @@ router.put('/:id', (req, res) => {
     }
 
     // is body has any changes? if not return 204(not modified)
-    if (!(name || point || type)) {
+    if (!(name || point || type || description)) {
         res.status(200)
             .json({
                 success: true,
@@ -340,6 +347,14 @@ router.put('/:id', (req, res) => {
                 {$set: {classType: type}}
             )
             changes.push('type')
+        }
+
+        // description exist and no the same description
+        if (description && _class.description !== description) {
+            await Class.updateOne(
+                {_id: req.params.id},
+                {$set: {description}}
+            )
         }
 
         return changes

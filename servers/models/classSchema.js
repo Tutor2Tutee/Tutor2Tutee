@@ -8,17 +8,19 @@ const classSchema = new mongoose.Schema({
     teacher: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
     listener: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
     point: {type: Number, min: 0, max: 50, default: 0},
-    classType: {type: String, required: true}
+    classType: {type: String, required: true},
+    description: {type: String, required: true}
 })
 
 
-classSchema.statics.create = async function (_id, name, point, classType) {
+classSchema.statics.create = async function (_id, name, point, classType, description) {
     // 새로운 클래스
     const _class = new this({
         name,
         teacher: _id,
         point,
-        classType
+        classType,
+        description
     })
 
     // 생성한 유저의 teaching list 에 값 추가

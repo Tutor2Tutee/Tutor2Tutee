@@ -25,7 +25,6 @@ router.post('/login', (req, res) => {
     }
 
     const secret = req.app.get('jwt-secret')
-
     const check = (user) => {
         if (!user) {
             throw new Error('Failed to Login, non exist user')
