@@ -5,6 +5,9 @@
   align-items: center;
   background-color: var(--night-primary-black);
 }
+.signup__container.light {
+  background-color: var(--light-primary-white);
+}
 
 .signup__form {
   width: 45rem;

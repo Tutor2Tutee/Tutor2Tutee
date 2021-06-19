@@ -13,16 +13,25 @@
   height: 9vh;
   flex-wrap: wrap;
 }
+.header.light {
+  background-color: white;
+}
 
 .header__h1 {
   padding: 1rem;
   color: var(--light-primary-purple);
   letter-spacing: 0.25rem;
 }
+.header__h1.light {
+  color: var(--night-primary-purple);
+}
 
 .header__h1--label {
   color: var(--light-primary-white);
   font-size: 2.5rem;
+}
+.header__h1--label.light {
+  color: var(--light-primary-black);
 }
 
 .header_toggle--btn {
@@ -40,6 +49,9 @@
 .header__lang--container {
   justify-self: flex-end;
   color: white;
+}
+.header__lang--container.light {
+  color: var(--night-primary-black);
 }
 
 .header__lang--main {
@@ -74,7 +86,10 @@
   align-items: center;
   background-color: var(--night-primary-black);
   border-radius: 5px;
-  box-shadow: 0 0 1rem rgba(255, 255, 255, 0.288);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+}
+.header__lang--option.light {
+  background-color: var(--light-primary-white);
 }
 
 .header__lang--option button {
@@ -86,9 +101,22 @@
   color: var(--light-primary-white);
   outline: none;
 }
+.header__lang--option button.light {
+  background-color: var(--light-primary-white);
+  color: var(--night-primary-black);
+}
 
 .header__lang--option button:hover {
   color: var(--light-primary-purple);
+}
+
+.header__theme--container {
+  width: 20px;
+  height: 20px;
+}
+.header_toggle--btn {
+  width: 20px;
+  height: 20px;
 }
 
 @media (max-width: 675px) {

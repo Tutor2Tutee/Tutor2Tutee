@@ -5,6 +5,9 @@
   align-items: center;
   background-color: var(--night-primary-black);
 }
+.login__container.light {
+  background-color: var(--light-primary-white);
+}
 
 .login__form {
   width: 45rem;

@@ -5,6 +5,9 @@
   justify-content: center;
   background-color: var(--night-primary-black);
 }
+.home__container.light {
+  background-color: var(--light-primary-white);
+}
 
 .home__main {
   display: flex;
@@ -27,6 +30,9 @@
   font-size: 2rem;
   color: var(--light-primary-white);
 }
+.home__h1.light {
+  color: var(--light-primary-black);
+}
 
 .home__p {
   font-size: 1.5rem;
@@ -46,6 +52,10 @@
   border: 2px solid var(--light-primary-purple);
   border-radius: 10px;
   transition: all 0.4s;
+}
+.home__button.light {
+  color: var(--night-primary-purple);
+  border-color: var(--night-primary-purple);
 }
 
 .home__button:hover {

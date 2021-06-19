@@ -7,6 +7,9 @@
   padding: 1.5rem;
 }
 
-.header__nav--li a:hover {
+.nav-link:hover {
   color: var(--light-primary-purple-medium);
+}
+.nav-link.light:hover {
+  color: var(--night-primary-purple);
 }

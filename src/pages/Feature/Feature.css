@@ -2,6 +2,9 @@
   min-height: 85vh;
   background-color: var(--night-primary-black);
 }
+.feature__container.light {
+  background-color: var(--light-primary-white);
+}
 
 .feature__main {
   display: flex;
@@ -31,6 +34,9 @@
 .feature__h1 {
   font-size: 3rem;
   color: var(--light-primary-white);
+}
+.feature__h1.light {
+  color: var(--night-primary-black);
 }
 
 .feature__p {
