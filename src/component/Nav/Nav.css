@@ -1,12 +1,12 @@
-.header__ul{
-    list-style: none;
-    display: flex;
-    align-items: center;
-    margin-right: .75rem;
+.header__ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem;
 }
 
-@media(max-width:675px){
-    .header__nav{
-        display: none;
-    }
+@media (max-width: 675px) {
+  .header__nav {
+    display: none;
+  }
 }
