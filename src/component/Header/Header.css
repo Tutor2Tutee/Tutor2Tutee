@@ -37,12 +37,13 @@
 .header_toggle--btn {
   padding-right: 10px;
   display: none;
+  cursor: pointer;
 }
 
 .header_toggle--btn div {
   width: 30px;
   height: 3px;
-  background-color: var(--light-primary-black);
+  background-color: var(--light-primary-grey);
   margin: 6px 0;
 }
 
@@ -114,14 +115,23 @@
   position: relative;
   width: 50px;
   height: 30px;
-  background: var(--night-primary-black);
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
   border-radius: 15px;
   display: flex;
   align-items: center;
   cursor: pointer;
   font-size: 0.8em;
 }
+
+.theme-btn.light{
+  background: white;
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.8);
+}
+
+.theme-btn.dark{
+  background: var(--night-primary-black);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
+}
+
 .theme-btn h1 {
   min-width: max-content;
   padding: 0 60px;
@@ -135,8 +145,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: rgb(255, 238, 0);
-
+  background-color: var(--night-primary-black);
   outline: none;
   border: none;
   position: absolute;
@@ -162,6 +171,8 @@
 
 .slider.dark {
   transform: translate(90%, -50%);
+  background-color: rgb(255, 238, 0);
+
 }
 .slider.dark::before {
   transform: translate(-30%, -70%);
@@ -173,8 +184,20 @@
   height: 20px;
 }
 
-@media (max-width: 675px) {
+@media (max-width: 950px) {
+  .theme-btn {
+    margin-right: 2rem;
+  }
+}
+
+
+@media (max-width: 800px) {
   .header_toggle--btn {
     display: inline-block;
+    margin-right: 2rem;
+    margin-bottom: 1.25rem;
+  }
+  .theme-btn {
+    display: none;
   }
 }
