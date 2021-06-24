@@ -13,12 +13,6 @@ const Header = (props) => {
   let language = useSelector((state) => state.lang.language)
   let isDark = useSelector((state) => state.theme.isDark)
 
-  // let themes = {
-  //   kor: {
-  //     dark:
-  //   }
-  // }
-
   const dispatch = useDispatch()
 
   const languageHandler = (lang) => {
@@ -54,10 +48,10 @@ const Header = (props) => {
         )}
       </div>
       {/* Theme toggler */}
-      <div onClick={handleThemeBtn} className="theme-btn">
+      <div onClick={handleThemeBtn} className={`theme-btn ${!isDark ? 'light' : 'dark'}`}>
         <button className={`slider ${!isDark ? 'light' : 'dark'}`}></button>
         <h1 className={!isDark && 'light'}>
-          {isDark ? (language === 'kor' ? '어두운' : 'dark') : language == 'kor' ? '빛' : 'light'}
+          {isDark ? (language === 'kor' ? '어두운' : 'Dark') : language == 'kor' ? '빛' : 'Light'}
         </h1>
       </div>
       <div onClick={props.toggleSD} className="header_toggle--btn">
