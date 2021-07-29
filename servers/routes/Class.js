@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Class = require('../models/classSchema');
 const authMiddleWare = require('../middleware/auth')
+const checkerMiddleWare = require("../middleware/paramIDChecker");
 
 
 // GET 'class/'
