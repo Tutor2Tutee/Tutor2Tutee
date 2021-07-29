@@ -9,7 +9,8 @@ const classSchema = new mongoose.Schema({
     listener: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
     point: {type: Number, min: 0, max: 50, default: 0},
     classType: {type: String, required: true},
-    description: {type: String, required: true}
+    description: {type: String, required: true},
+    classes: [{type:mongoose.Schema.Types.Mixed}]
 })
 
 
@@ -37,7 +38,6 @@ classSchema.statics.findByName = function (name) {
 }
 
 classSchema.methods.registerClassById = async function (listenerID) {
-    // 이미 수강한 학생이면? return false
     await this.updateOne(
         {$push: {listener: listenerID}}
     )
