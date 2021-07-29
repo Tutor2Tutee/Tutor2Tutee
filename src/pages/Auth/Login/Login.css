@@ -16,8 +16,12 @@
   flex-direction: column;
   justify-content: center;
   border-radius: 10px;
-  background-color: var(--light-primary-white);
+  background-color: #1c1d21;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+}
+
+.login__form.light {
+  background-color: var(--light-primary-white);
 }
 
 .login__form--button {
