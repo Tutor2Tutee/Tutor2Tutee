@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Class = require('../models/classSchema');
+const recordedVideo = require('./ClassAddition/recordedVideo')
 const authMiddleWare = require('../middleware/auth')
 const checkerMiddleWare = require("../middleware/paramIDChecker");
 
@@ -103,16 +104,8 @@ router.post('/', (req, res) => {
 //GET 'class/:id'
 // show class matches id
 // no authorization required
+router.use('/:id', checkerMiddleWare)
 router.get('/:id', (req, res) => {
-    // id가 정당한가요?
-    if (req.params.id.length !== 24) {
-        res.status(400)
-            .json({
-                success: false,
-                message: 'wrong id format, check id length'
-            })
-    }
-
     // id와 매칭되는 클래스가 있어야해요!
     const isItExist = (_class) => {
         if (_class) {
@@ -164,15 +157,6 @@ router.use('/:id', authMiddleWare)
 router.post('/:id', (req, res) => {
     // listener id
     const listenerID = req.decoded._id
-
-    // is id correct?
-    if (req.params.id.length !== 24) {
-        res.status(400)
-            .json({
-                success: false,
-                message: 'wrong id format, check id length'
-            })
-    }
 
     // need matching class
     const isItExist = (_class) => {
@@ -275,15 +259,6 @@ router.put('/:id', (req, res) => {
     // 200 : Not Modified <- with body
     const {name, point, type, description} = req.body
     const teacherID = req.decoded._id
-
-    // is request.parameter correct?
-    if (req.params.id.length !== 24) {
-        res.status(400)
-            .json({
-                success: false,
-                message: 'wrong id format, check id length'
-            })
-    }
 
     // is body has any changes? if not return 204(not modified)
     if (!(name || point || type || description)) {
@@ -426,7 +401,7 @@ router.put('/:id', (req, res) => {
 });
 
 
-//DELETE
+//DELETE 'classes/:id'
 // DELETE A CLASS
 // AUTHORIZATION REQUIRED
 router.delete('/:id', (req, res) => {
@@ -434,15 +409,6 @@ router.delete('/:id', (req, res) => {
     // 200 : DELETED, NOTHING TO SHOW TO YOU
 
     const teacherID = req.decoded._id
-
-    // is request.parameter correct?
-    if (req.params.id.length !== 24) {
-        res.status(400)
-            .json({
-                success: false,
-                message: 'wrong id format, check id length'
-            })
-    }
 
     // need matching class
     const isItExist = (_class) => {
@@ -510,6 +476,13 @@ router.delete('/:id', (req, res) => {
         .catch(onError)
 
 });
+
+// GET "classes/:id/chapters"
+// CHAPTER URI only used in recordedVideo
+// SHOW EVERY CLASS IN :id
+router.get('/:id/chapters', (req, res) => {
+    recordedVideo.getChapter(req, res)
+})
 
 
 module.exports = router;
