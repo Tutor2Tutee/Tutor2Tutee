@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
 
 :root {
   --night-primary-black: #282828;
@@ -12,6 +12,7 @@
   --light-primary-grey: #898886;
   --light-secondary-grey: #6d6d6c;
   --light-primary-white: #ffffff;
+  --light-secondary-white: #ffffffe7;
   --light-primary-purple: #946adc;
   --light-primary-purple-medium: #6856b8;
   --light-primary-purple-dark: #2a367c;
@@ -28,7 +29,7 @@ html {
 }
 
 body {
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: "Nanum Gothic", sans-serif;
 }
 
 @media (min-width: 1600px) {
