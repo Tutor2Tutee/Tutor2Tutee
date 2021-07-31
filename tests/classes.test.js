@@ -1,23 +1,12 @@
 const request = require('supertest')
-const mongoose = require('mongoose')
 const app = require('../servers/server')
+const db = require("./testMongoDB");
+
+beforeAll(async () => await db.connect());
+afterEach(async () => await db.clearDatabase());
+afterAll(async () => await db.closeDatabase());
 
 describe('test /classes', () => {
-    beforeAll((done) => {
-        mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}/`, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: true,
-            useCreateIndex: true,
-            dbName: 'Tutor2TuteeTest'
-        }).then(() => {
-            done()
-        }).catch((err) => {
-            console.error(err)
-            done()
-        })
-    })
-
     test('should return every classes', (done) => {
         request(app)
             .get('/api/classes')
@@ -27,12 +16,12 @@ describe('test /classes', () => {
                 expect(response.body.message).toBe('success');
                 done();
             })
+            .catch(err => {
+                done(err);
+            })
+
     })
 
-    afterAll((done) => {
-        mongoose.disconnect(done)
-    })
 })
-
 
 
