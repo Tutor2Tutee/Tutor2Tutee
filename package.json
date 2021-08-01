@@ -32,8 +32,9 @@
     "start:client": "react-scripts start",
     "start:server": "node ./servers/server.js",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test-fake": "react-scripts tests",
+    "eject": "react-scripts eject",
+    "test": "jest"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +55,12 @@
     ]
   },
   "devDependencies": {
-    "cors": "^2.8.5"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "cors": "^2.8.5",
+    "jest": "^26.6.0",
+    "mongodb-memory-server": "^7.3.4",
+    "superagent": "^6.1.0",
+    "supertest": "^6.1.4"
   }
 }
