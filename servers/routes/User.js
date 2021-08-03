@@ -59,7 +59,7 @@ router.post('/login', (req, res) => {
         res.status(200).json({
             success: true,
             message: 'login is successful',
-            user : user._id,
+            user: user._id,
             token
         })
     }
@@ -69,16 +69,16 @@ router.post('/login', (req, res) => {
             case 'non exist user':
                 res.status(400)
                     .json({
-                        success:false,
-                        message:'non exist user'
+                        success: false,
+                        message: 'non exist user'
                     })
                 break
 
             case 'password is incorrect':
                 res.status(400)
                     .json({
-                        success:false,
-                        message:"incorrect password"
+                        success: false,
+                        message: "incorrect password"
                     })
                 break
 
@@ -104,19 +104,8 @@ router.post('/register', (req, res) => {
     const email = req.body.email
     const password = req.body.password
     const nickname = req.body.nickname
-    console.log('registering ' + email)
-    let birth = Date.now()
-    // 날짜가 형식에 맞는지 확인
-    try {
-        birth = new Date(req.body.birth)
-    } catch (e) {
-        res.status(403).json({
-            success: false,
-            message: 'wrong date'
-        })
-    }
+    const birth = req.body.birth
 
-    // 각 항목이 비었는지 확인
     if (!email) {
         return res.status(400).json({
             success: false,
@@ -137,27 +126,55 @@ router.post('/register', (req, res) => {
         })
     }
 
+    if (!birth) {
+        return res.status(400).json({
+            success: false,
+            message: 'birth is empty'
+        })
+    }
+
+    // is data matches format?
+    if (birth.match(/^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/g) === null)
+    {
+        return res.status(400).json({
+            success: false,
+            message: 'wrong date'
+        })
+    }
+    let BirthDate = new Date(birth)
+
+
 
     const create = (user) => {
         if (user)
             throw new Error('user already exists')
         else
-            return User.create(email, password, nickname, birth)
+            return User.create(email, password, nickname, BirthDate)
 
     }
 
-    const respond = () => {
+    const respond = (user) => {
         res.status(201).json({
             success: true,
-            message: email + ' registered'
+            message: user.email + ' registered'
         })
     }
 
     const onError = (error) => {
-        res.status(409).json({
-            success: false,
-            message: error.message
-        })
+        switch (error.message){
+            case 'user already exists':
+                res.status(400)
+                    .json({
+                        success:false,
+                        message:'user already exists'
+                    })
+                break
+            default:
+                res.status(409).json({
+                    success: false,
+                    message: error.message
+                })
+        }
     }
 
     User.findOneByEmail(email)
@@ -176,7 +193,7 @@ router.get('/:id', (req, res) => {
                     .json({
                         success: true,
                         message: 'success to find a user : ' + user.email,
-                        _id : user._id,
+                        _id: user._id,
                         email: user.email,
                         nickname: user.nickname,
                         birth: user.birth
