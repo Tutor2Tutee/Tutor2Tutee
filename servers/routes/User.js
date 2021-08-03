@@ -27,10 +27,10 @@ router.post('/login', (req, res) => {
     const secret = req.app.get('jwt-secret')
     const check = (user) => {
         if (!user) {
-            throw new Error('Failed to Login, non exist user')
+            throw new Error('non exist user')
         }
         if (!user.verify(password)) {
-            throw new Error("Failed to Login, password is incorrect")
+            throw new Error("password is incorrect")
         }
         return new Promise((resolve, reject) => {
             jwt.sign(
@@ -58,17 +58,36 @@ router.post('/login', (req, res) => {
     const respond = ({token, user}) => {
         res.status(200).json({
             success: true,
-            message: 'login is succesful',
+            message: 'login is successful',
             user : user._id,
             token
         })
     }
 
     const onError = (error) => {
-        res.status(409).json({
-            success: false,
-            message: error.message
-        })
+        switch (error.message) {
+            case 'non exist user':
+                res.status(400)
+                    .json({
+                        success:false,
+                        message:'non exist user'
+                    })
+                break
+
+            case 'password is incorrect':
+                res.status(400)
+                    .json({
+                        success:false,
+                        message:"incorrect password"
+                    })
+                break
+
+            default:
+                res.status(409).json({
+                    success: false,
+                    message: error.message
+                })
+        }
     }
 
     User.findOneByEmail(email)

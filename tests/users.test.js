@@ -95,7 +95,7 @@ describe('test /users', () => {
                     .then(response => {
                         expect(response.statusCode).toBe(400);
                         expect(response.body.success).toBeFalsy();
-                        expect(response.body.message).toEqual('Failed to Login, non exist user');
+                        expect(response.body.message).toEqual('non exist user');
                         done()
                     })
                     .catch(err => {
@@ -114,7 +114,7 @@ describe('test /users', () => {
                     .then(response => {
                         expect(response.statusCode).toBe(400);
                         expect(response.body.success).toBeFalsy()
-                        expect(response.body.message).toEqual('Failed to Login, password is incorrect');
+                        expect(response.body.message).toEqual('incorrect password');
                         done()
                     })
                     .catch(err => done(err))
