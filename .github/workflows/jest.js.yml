@@ -11,6 +11,8 @@ on:
 
 jobs:
   build:
+    env:
+      SECRET: SECRET
 
     runs-on: ubuntu-latest
 
