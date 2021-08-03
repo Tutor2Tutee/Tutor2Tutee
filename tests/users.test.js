@@ -6,7 +6,6 @@ const db = require('./testMongoDB');
 
 
 beforeAll(async () => await db.connect());
-afterEach(async () => await db.clearDatabase());
 afterAll(async () => await db.closeDatabase());
 
 describe('test /users', () => {
@@ -28,6 +27,8 @@ describe('test /users', () => {
                 done(err)
             })
         })
+
+        afterAll(async () => await db.clearDatabase());
 
         it('should return 200, user._id and token', (done) => {
             request(app)
@@ -126,6 +127,21 @@ describe('test /users', () => {
     })
 
     describe('POST /register', () => {
+        beforeAll((done)=> {
+            User.create(
+                'alreadyauser@test.com',
+                'password',
+                'nickname',
+                '2021-08-03'
+            ).then(() => {
+                done()
+            }).catch((err) => done(err))
+
+        })
+
+        afterAll(async () => await db.clearDatabase());
+
+
         it('should return 201', (done) => {
             request(app)
                 .post('/api/users/register')
@@ -153,6 +169,23 @@ describe('test /users', () => {
             const matchingBirth = "2021-07-31"
 
             const registerURI = '/api/users/register'
+
+            it('should return 400 and return user already exists', (done) => {
+                request(app)
+                    .post('/api/users/register')
+                    .send({
+                        email: 'alreadyauser@test.com',
+                        password: 'testPassword',
+                        nickname: 'DuplicatedNickname',
+                        birth: '2021-08-03'
+                    })
+                    .then(response => {
+                        expect(response.statusCode).toBe(400)
+                        expect(response.body.success).toBeFalsy()
+                        expect(response.body.message).toEqual('user already exists')
+                        done()
+                    }).catch(err => done(err))
+            });
 
             it('should return 400 and email is empty', (done) => {
                 request(app)
