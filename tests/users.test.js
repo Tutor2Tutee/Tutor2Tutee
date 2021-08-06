@@ -1,8 +1,8 @@
 const request = require('supertest');
-const jwt = require('jsonwebtoken')
 const app = require('../servers/server');
 const User = require('../servers/models/userSchema');
 const db = require('./testMongoDB');
+const tokenizer = require("./tokenizer");
 
 
 beforeAll(async () => await db.connect());
@@ -127,7 +127,7 @@ describe('test /users', () => {
     })
 
     describe('POST /register', () => {
-        beforeAll((done)=> {
+        beforeAll((done) => {
             User.create(
                 'alreadyauser@test.com',
                 'password',
@@ -280,8 +280,6 @@ describe('test /users', () => {
         let user1 = {}
         let user2 = {}
 
-        const secret = app.get('jwt-secret')
-
         const GET_ID_URI = '/api/users'
 
         beforeAll(async () => {
@@ -299,34 +297,12 @@ describe('test /users', () => {
             )
             user1._id = User1._id
             user1.email = User1.email
-
-            user1.token = await jwt.sign(
-                {
-                    _id: User1._id,
-                    email: User1.email
-                },
-                secret,
-                {
-                    expiresIn: '1d',
-                    issuer: "Tutor2Tutee",
-                    subject: 'user information'
-                }
-            )
-
             user2._id = User2._id
+            user2.email = User2.email
 
-            user2.token = await jwt.sign(
-                {
-                    _id: User2._id,
-                    email: User2.email
-                },
-                secret,
-                {
-                    expiresIn: '1d',
-                    issuer: 'Tutor2Tutee',
-                    subject: 'user information'
-                }
-            )
+
+            user1.token = await tokenizer.getToken(user1)
+            user2.token = await tokenizer.getToken(user2)
         })
 
         it('should return 200 and user info', (done) => {
