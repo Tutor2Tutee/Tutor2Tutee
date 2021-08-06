@@ -28,6 +28,63 @@ router.get('/', (req, res) => {
         }))
 });
 
+//GET 'class/:id'
+// show class matches id
+// no authorization required
+router.get('/:id', (req, res) => {
+    // id가 정당한가요?
+    if (req.params.id.length !== 24) {
+        return res.status(400)
+            .json({
+                success: false,
+                message: 'wrong id format, check id length'
+            })
+    }
+
+    // id와 매칭되는 클래스가 있어야해요!
+    const isItExist = (_class) => {
+        if (_class) {
+            return _class
+        } else {
+            throw new Error("id")
+        }
+    }
+
+    // response
+    const response = (_class) => {
+        return res.status(200)
+            .json({
+                success: true,
+                message: 'successfully find : ' + _class._id,
+                data: _class
+            })
+    }
+
+    // 에러 핸들링
+    const onError = (error) => {
+        if (error.message === 'id') {
+            return res.status(404)
+                .json({
+                    success: false,
+                    message: "id doesn't exist"
+                })
+        } else {
+            return res.status(409)
+                .json({
+                    success: false,
+                    message: error.message
+                })
+        }
+    }
+
+
+    Class.findOne({_id: req.params.id})
+        .populate('teacher', '_id nickname email teaching')
+        .then(isItExist)
+        .then(response)
+        .catch(onError)
+});
+
 // POST '/'
 // make a class
 // authorization required
@@ -99,62 +156,6 @@ router.post('/', (req, res) => {
 
 });
 
-//GET 'class/:id'
-// show class matches id
-// no authorization required
-router.get('/:id', (req, res) => {
-    // id가 정당한가요?
-    if (req.params.id.length !== 24) {
-        res.status(400)
-            .json({
-                success: false,
-                message: 'wrong id format, check id length'
-            })
-    }
-
-    // id와 매칭되는 클래스가 있어야해요!
-    const isItExist = (_class) => {
-        if (_class) {
-            return _class
-        } else {
-            throw new Error("id")
-        }
-    }
-
-    // response
-    const response = (_class) => {
-        res.status(200)
-            .json({
-                success: true,
-                message: 'successfully find : ' + _class._id,
-                data: _class
-            })
-    }
-
-    // 에러 핸들링
-    const onError = (error) => {
-        if (error.message === 'id') {
-            res.status(404)
-                .json({
-                    success: false,
-                    message: "id doesn't exit"
-                })
-        } else {
-            res.status(409)
-                .json({
-                    success: false,
-                    message: error.message
-                })
-        }
-    }
-
-
-    Class.findOne({_id: req.params.id})
-        .populate('teacher', '_id nickname email teaching')
-        .then(isItExist)
-        .then(response)
-        .catch(onError)
-});
 
 // POST 'class/:id'
 // register a Class
