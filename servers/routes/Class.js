@@ -96,28 +96,28 @@ router.post('/', (req, res) => {
 
     // 세가지 parameter(name, point, classType)가 존재하는지 확인!
     if (!name) {
-        res.status(400)
+        return res.status(400)
             .json({
                 success: false,
                 message: 'name is empty'
             })
     }
     if (!point) {
-        res.status(400)
+        return res.status(400)
             .json({
                 success: false,
                 message: "point is empty"
             })
     }
     if (!classType) {
-        res.status(400)
+        return res.status(400)
             .json({
                 success: false,
                 message: 'classType is empty'
             })
     }
     if (!description) {
-        res.status(400)
+        return res.status(400)
             .json({
                 success: false,
                 message: "description is empty"
@@ -127,7 +127,7 @@ router.post('/', (req, res) => {
     // 클래스가 이미 존재하는 지 확인.
     const create = (_class) => {
         if (_class) {
-            throw new Error('class name is already exists')
+            throw new Error('class exists')
         } else {
             return Class.create(userId, name, point, classType, description)
         }
@@ -142,17 +142,28 @@ router.post('/', (req, res) => {
     }
 
     const onError = (error) => {
-        res.status(409)
-            .json({
-                success: false,
-                message: error.message
-            })
+        switch (error.message) {
+            case 'class exists':
+                return res.status(400)
+                    .json({
+                        success: false,
+                        message: "class name is already exists"
+                    })
+            default:
+                return res.status(409)
+                    .json({
+                        success: false,
+                        message: error.message
+                    })
+
+        }
     }
 
     Class.findByName(name)
         .then(create)
         .then(respond)
         .catch(onError)
+
 
 });
 
@@ -226,7 +237,7 @@ router.post('/:id', (req, res) => {
                 res.status(404)
                     .json({
                         success: false,
-                        message: "class id doesn't exit"
+                        message: "id doesn't exist"
                     })
                 break
 
@@ -282,15 +293,6 @@ router.put('/:id', (req, res) => {
             .json({
                 success: false,
                 message: 'wrong id format, check id length'
-            })
-    }
-
-    // is body has any changes? if not return 204(not modified)
-    if (!(name || point || type || description)) {
-        res.status(200)
-            .json({
-                success: true,
-                message: 'nothing modified'
             })
     }
 
@@ -356,6 +358,7 @@ router.put('/:id', (req, res) => {
                 {_id: req.params.id},
                 {$set: {description}}
             )
+            changes.push('description')
         }
 
         return changes
@@ -363,14 +366,14 @@ router.put('/:id', (req, res) => {
 
     const response = (changes) => {
         if (changes.length) {
-            res.status(201)
+            return res.status(201)
                 .json({
                     success: true,
                     message: 'successfully modified',
                     changed: changes.join(', ')
                 })
         } else {
-            res.status(200)
+            return res.status(200)
                 .json({
                     success: true,
                     message: 'nothing modified'
@@ -385,7 +388,7 @@ router.put('/:id', (req, res) => {
                 res.status(404)
                     .json({
                         success: false,
-                        message: "class id doesn't exit"
+                        message: "id doesn't exist"
                     })
                 break
 
@@ -401,7 +404,7 @@ router.put('/:id', (req, res) => {
                 res.status(400)
                     .json({
                         success: false,
-                        message: 'error on changing class name, name already exists.'
+                        message: 'class name already exists'
                     })
                 break
 
@@ -437,7 +440,7 @@ router.delete('/:id', (req, res) => {
 
     // is request.parameter correct?
     if (req.params.id.length !== 24) {
-        res.status(400)
+        return res.status(400)
             .json({
                 success: false,
                 message: 'wrong id format, check id length'
@@ -465,7 +468,7 @@ router.delete('/:id', (req, res) => {
     const deleteClass = (_class) => {
         Class.deleteOne({_id: _class._id})
             .then(() => {
-                res.status(200)
+                return res.status(200)
                     .json({
                         success: true,
                         message: 'successfully deleted : ' + _class.name
@@ -478,23 +481,21 @@ router.delete('/:id', (req, res) => {
     const onError = (error) => {
         switch (error.message) {
             case 'id':
-                res.status(404)
+                return res.status(404)
                     .json({
                         success: false,
-                        message: "class id doesn't exit"
+                        message: "id doesn't exist"
                     })
-                break
 
             case 'teacher':
-                res.status(400)
+                return res.status(400)
                     .json({
                         success: false,
                         message: 'only can be modified by teacher'
                     })
-                break
 
             default:
-                res.status(409)
+                return res.status(409)
                     .json({
                         success: false,
                         message: error.message
