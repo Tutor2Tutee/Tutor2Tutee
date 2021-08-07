@@ -28,84 +28,13 @@ router.get('/', (req, res) => {
         }))
 });
 
-// POST '/'
-// make a class
-// authorization required
-router.use('/', authMiddleWare)
-router.post('/', (req, res) => {
-    const {name, point, classType, description} = req.body
-    const userId = req.decoded._id
-
-
-    // 세가지 parameter(name, point, classType)가 존재하는지 확인!
-    if (!name) {
-        res.status(400)
-            .json({
-                success: false,
-                message: 'name is empty'
-            })
-    }
-    if (!point) {
-        res.status(400)
-            .json({
-                success: false,
-                message: "point is empty"
-            })
-    }
-    if (!classType) {
-        res.status(400)
-            .json({
-                success: false,
-                message: 'classType is empty'
-            })
-    }
-    if (!description) {
-        res.status(400)
-            .json({
-                success: false,
-                message: "description is empty"
-            })
-    }
-
-    // 클래스가 이미 존재하는 지 확인.
-    const create = (_class) => {
-        if (_class) {
-            throw new Error('class name is already exists')
-        } else {
-            return Class.create(userId, name, point, classType, description)
-        }
-    }
-
-    const respond = (_class) => {
-        res.status(201)
-            .json({
-                success: true,
-                message: "class '" + _class.name + "' created"
-            })
-    }
-
-    const onError = (error) => {
-        res.status(409)
-            .json({
-                success: false,
-                message: error.message
-            })
-    }
-
-    Class.findByName(name)
-        .then(create)
-        .then(respond)
-        .catch(onError)
-
-});
-
 //GET 'class/:id'
 // show class matches id
 // no authorization required
 router.get('/:id', (req, res) => {
     // id가 정당한가요?
     if (req.params.id.length !== 24) {
-        res.status(400)
+        return res.status(400)
             .json({
                 success: false,
                 message: 'wrong id format, check id length'
@@ -123,7 +52,7 @@ router.get('/:id', (req, res) => {
 
     // response
     const response = (_class) => {
-        res.status(200)
+        return res.status(200)
             .json({
                 success: true,
                 message: 'successfully find : ' + _class._id,
@@ -134,13 +63,13 @@ router.get('/:id', (req, res) => {
     // 에러 핸들링
     const onError = (error) => {
         if (error.message === 'id') {
-            res.status(404)
+            return res.status(404)
                 .json({
                     success: false,
-                    message: "id doesn't exit"
+                    message: "id doesn't exist"
                 })
         } else {
-            res.status(409)
+            return res.status(409)
                 .json({
                     success: false,
                     message: error.message
@@ -155,6 +84,89 @@ router.get('/:id', (req, res) => {
         .then(response)
         .catch(onError)
 });
+
+// POST '/'
+// make a class
+// authorization required
+router.use('/', authMiddleWare)
+router.post('/', (req, res) => {
+    const {name, point, classType, description} = req.body
+    const userId = req.decoded._id
+
+
+    // 세가지 parameter(name, point, classType)가 존재하는지 확인!
+    if (!name) {
+        return res.status(400)
+            .json({
+                success: false,
+                message: 'name is empty'
+            })
+    }
+    if (!point) {
+        return res.status(400)
+            .json({
+                success: false,
+                message: "point is empty"
+            })
+    }
+    if (!classType) {
+        return res.status(400)
+            .json({
+                success: false,
+                message: 'classType is empty'
+            })
+    }
+    if (!description) {
+        return res.status(400)
+            .json({
+                success: false,
+                message: "description is empty"
+            })
+    }
+
+    // 클래스가 이미 존재하는 지 확인.
+    const create = (_class) => {
+        if (_class) {
+            throw new Error('class exists')
+        } else {
+            return Class.create(userId, name, point, classType, description)
+        }
+    }
+
+    const respond = (_class) => {
+        res.status(201)
+            .json({
+                success: true,
+                message: "class '" + _class.name + "' created"
+            })
+    }
+
+    const onError = (error) => {
+        switch (error.message) {
+            case 'class exists':
+                return res.status(400)
+                    .json({
+                        success: false,
+                        message: "class name is already exists"
+                    })
+            default:
+                return res.status(409)
+                    .json({
+                        success: false,
+                        message: error.message
+                    })
+
+        }
+    }
+
+    Class.findByName(name)
+        .then(create)
+        .then(respond)
+        .catch(onError)
+
+
+});
+
 
 // POST 'class/:id'
 // register a Class
@@ -225,7 +237,7 @@ router.post('/:id', (req, res) => {
                 res.status(404)
                     .json({
                         success: false,
-                        message: "class id doesn't exit"
+                        message: "id doesn't exist"
                     })
                 break
 
@@ -281,15 +293,6 @@ router.put('/:id', (req, res) => {
             .json({
                 success: false,
                 message: 'wrong id format, check id length'
-            })
-    }
-
-    // is body has any changes? if not return 204(not modified)
-    if (!(name || point || type || description)) {
-        res.status(200)
-            .json({
-                success: true,
-                message: 'nothing modified'
             })
     }
 
@@ -355,6 +358,7 @@ router.put('/:id', (req, res) => {
                 {_id: req.params.id},
                 {$set: {description}}
             )
+            changes.push('description')
         }
 
         return changes
@@ -362,14 +366,14 @@ router.put('/:id', (req, res) => {
 
     const response = (changes) => {
         if (changes.length) {
-            res.status(201)
+            return res.status(201)
                 .json({
                     success: true,
                     message: 'successfully modified',
                     changed: changes.join(', ')
                 })
         } else {
-            res.status(200)
+            return res.status(200)
                 .json({
                     success: true,
                     message: 'nothing modified'
@@ -384,7 +388,7 @@ router.put('/:id', (req, res) => {
                 res.status(404)
                     .json({
                         success: false,
-                        message: "class id doesn't exit"
+                        message: "id doesn't exist"
                     })
                 break
 
@@ -400,7 +404,7 @@ router.put('/:id', (req, res) => {
                 res.status(400)
                     .json({
                         success: false,
-                        message: 'error on changing class name, name already exists.'
+                        message: 'class name already exists'
                     })
                 break
 
@@ -436,7 +440,7 @@ router.delete('/:id', (req, res) => {
 
     // is request.parameter correct?
     if (req.params.id.length !== 24) {
-        res.status(400)
+        return res.status(400)
             .json({
                 success: false,
                 message: 'wrong id format, check id length'
@@ -464,7 +468,7 @@ router.delete('/:id', (req, res) => {
     const deleteClass = (_class) => {
         Class.deleteOne({_id: _class._id})
             .then(() => {
-                res.status(200)
+                return res.status(200)
                     .json({
                         success: true,
                         message: 'successfully deleted : ' + _class.name
@@ -477,23 +481,21 @@ router.delete('/:id', (req, res) => {
     const onError = (error) => {
         switch (error.message) {
             case 'id':
-                res.status(404)
+                return res.status(404)
                     .json({
                         success: false,
-                        message: "class id doesn't exit"
+                        message: "id doesn't exist"
                     })
-                break
 
             case 'teacher':
-                res.status(400)
+                return res.status(400)
                     .json({
                         success: false,
                         message: 'only can be modified by teacher'
                     })
-                break
 
             default:
-                res.status(409)
+                return res.status(409)
                     .json({
                         success: false,
                         message: error.message
