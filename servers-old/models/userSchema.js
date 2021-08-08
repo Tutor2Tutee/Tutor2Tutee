@@ -21,7 +21,7 @@ userSchema.statics.create = function (email, password, nickname, birth) {
 
 
     const user = new this({
-        email, password:encrypted, nickname, birth, point: 0
+        email, password: encrypted, nickname, birth, point: 0
     })
 
     return user.save()

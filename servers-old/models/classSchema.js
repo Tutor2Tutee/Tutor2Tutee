@@ -1,0 +1,49 @@
+const mongoose = require('mongoose');
+const User = require('./userSchema');
+
+const classSchema = new mongoose.Schema({
+    id: mongoose.Schema.Types.ObjectId,
+    name: { type: String, required: true, unique: true },
+    created: { type: Date, default: Date.now },
+    teacher: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    listener: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    point: { type: Number, min: 0, max: 50, default: 0 },
+    classType: { type: String, required: true },
+    description: { type: String, required: true },
+});
+
+classSchema.statics.create = async function (
+    _id,
+    name,
+    point,
+    classType,
+    description,
+) {
+    const _class = new this({
+        name,
+        teacher: _id,
+        point,
+        classType,
+        description,
+    });
+
+    await User.updateOne({ _id }, { $push: { teaching: _class._id } });
+
+    return _class.save();
+};
+
+classSchema.statics.findByName = function (name) {
+    return this.findOne({ name }).exec();
+};
+
+classSchema.methods.registerClassById = async function (listenerID) {
+    // 이미 수강한 학생이면? return false
+    await this.updateOne({ $push: { listener: listenerID } });
+
+    await User.updateOne(
+        { _id: listenerID },
+        { $push: { listening: this._id } },
+    );
+};
+
+module.exports = mongoose.model('ClassModel', classSchema);

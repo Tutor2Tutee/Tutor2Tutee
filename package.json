@@ -1,15 +1,23 @@
 {
   "name": "tutor2tutee",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "node": "16.x"
   },
   "private": true,
   "dependencies": {
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^1.0.1",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/mapped-types": "^1.0.0",
+    "@nestjs/mongoose": "^8.0.0",
+    "@nestjs/platform-express": "^8.0.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "body-parser": "^1.19.0",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "eslint": "^7.26.0",
@@ -26,16 +34,26 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^7.2.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "npm-run-all --parallel start:**",
     "start:client": "react-scripts start",
-    "start:server": "node ./servers/server.js",
-    "build": "react-scripts build",
-    "test-fake": "react-scripts tests",
-    "eject": "react-scripts eject",
-    "test": "jest"
+    "start:server": "nest start",
+    "start:server:dev": "nest start --watch",
+    "start:server:debug": "nest start --debug --watch",
+    "start:server:prod": "node dist/main",
+    "react:build": "react-scripts build",
+    "react:test": "react-scripts tests",
+    "react:eject": "react-scripts eject",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./tests/jest-e2e.json"
   },
   "eslintConfig": {
     "extends": [
@@ -56,12 +74,45 @@
     ]
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "@nestjs/cli": "^8.0.0",
+    "@nestjs/schematics": "^8.0.0",
+    "@nestjs/testing": "^8.0.0",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.0.0",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
     "cors": "^2.8.5",
-    "jest": "^26.6.0",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.6",
     "mongodb-memory-server": "^7.3.4",
+    "prettier": "^2.3.2",
     "superagent": "^6.1.0",
-    "supertest": "^6.1.4"
+    "supertest": "^6.1.4",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.0.0",
+    "tsconfig-paths": "^3.10.1",
+    "typescript": "^4.3.5"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "servers",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
   }
 }
