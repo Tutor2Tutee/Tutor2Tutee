@@ -12,17 +12,17 @@ export class AuthService {
     ) {}
 
     async validateUser(email: string, password: string): Promise<any> {
-        const user = await this.userModel.findOne({ email });
+        const user = await this.userModel.findOne({ email }).exec();
+
         if (user && user.password === password) {
-            const { password, ...result } = user;
-            return result;
+            return { _id: user._id, email: user.email };
         }
 
         return null;
     }
 
-    async login(user: User) {
-        const payload = { email: user.email, id: user.id };
+    async login(user: any) {
+        const payload = { email: user.email, id: user._id };
         return {
             access_token: this.jwtService.sign(payload),
         };
