@@ -13,8 +13,8 @@ const dbOpt = {
 
 @Module({
     imports: [
-        ApiModule,
         ConfigModule.forRoot({ isGlobal: true }),
+        ApiModule,
         MongooseModule.forRoot(
             `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}/`,
             dbOpt,
