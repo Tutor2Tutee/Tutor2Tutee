@@ -31,7 +31,7 @@ export const closeMongoose = async () => {
     }
 };
 
-export const clear = async () => {
+export const clearMongoose = async () => {
     const collections = mongoose.connection.collections;
     for (const key in collections) {
         const collection = collections[key];

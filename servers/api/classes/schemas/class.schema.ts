@@ -4,6 +4,12 @@ import { User } from '../../users/schemas/user.schema';
 
 export type ClassDocument = Class & Document;
 
+export type ClassType =
+    | 'recordedVideo'
+    | 'onlineMeeting'
+    | 'offlineMeeting'
+    | 'Question&Answer';
+
 @Schema()
 export class Class {
     @Prop()
@@ -23,11 +29,7 @@ export class Class {
     point: number;
 
     @Prop({ required: true })
-    classType:
-        | 'recordedVideo'
-        | 'onlineMeeting'
-        | 'offlineMeeting'
-        | 'Question&Answer';
+    classType: ClassType;
 
     @Prop({ required: true })
     description: string;
@@ -37,16 +39,6 @@ export class Class {
 
     @Prop()
     listener: User[];
-
-    static create({ name, teacher, point, classType }) {
-        const created_class = new this({
-            name,
-            teacher,
-            point,
-            description,
-            classType,
-        });
-    }
 }
 
 export const ClassSchema = SchemaFactory.createForClass(Class);
