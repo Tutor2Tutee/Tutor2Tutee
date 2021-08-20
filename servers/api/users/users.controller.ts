@@ -1,9 +1,8 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
-    HttpCode,
-    HttpException,
     Param,
     Patch,
     Post,
@@ -29,7 +28,6 @@ import {
 import { LoginResponse } from './response_entities/login.response';
 import { LoginUserDto } from './dto/login.user.dto';
 import { IdParamsUserDto } from './dto/id.params.user.dto';
-import { reduce } from 'rxjs';
 
 @Controller('api/users')
 @ApiTags('Users API')
@@ -116,5 +114,11 @@ export class UsersController {
         @Body() userData: UpdateUserDto,
     ) {
         return this.usersService.updateOneById(params.id, userData);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Delete('/:id')
+    async deleteOne(@Param() params: IdParamsUserDto) {
+        return this.usersService.deleteOneById(params.id);
     }
 }

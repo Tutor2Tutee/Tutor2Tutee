@@ -7,12 +7,10 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './schemas/user.schema';
-import { Model, set } from 'mongoose';
+import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create.user.dto';
 import * as bcrypt from 'bcrypt';
 import { UpdateUserDto } from './dto/update.user.dto';
-import { log } from 'util';
-import { rejects } from 'assert';
 
 const getHash = async (str: string, rounds: number): Promise<String> =>
     await bcrypt.hash(str, rounds);
@@ -44,7 +42,7 @@ export class UsersService {
     };
 
     updateOneById = async (_id: string, userData: UpdateUserDto) => {
-        const updateUser = async () => {
+        const updateUser = async (_id: string) => {
             try {
                 return await this.userModel.updateOne(
                     { _id },
@@ -55,8 +53,27 @@ export class UsersService {
             }
         };
 
-        const result = await updateUser();
+        const result = await updateUser(_id);
         if (result.n === 0) throw new NotFoundException(`id ${_id} not found`);
-        return { n: result.n, nModified: result.nModified };
+        return {
+            message: `successfully modified ${result.nModified} element`,
+            nModified: result.nModified,
+        };
+    };
+    deleteOneById = async (_id: string) => {
+        const deleteUser = async (_id: string) => {
+            try {
+                return this.userModel.deleteOne({ _id });
+            } catch (e) {
+                throw new ConflictException(e);
+            }
+        };
+
+        const result = await deleteUser(_id);
+        if (result.n === 0) throw new NotFoundException(`id ${_id} not found`);
+        return {
+            message: `successfully deleted user ${_id}`,
+            deletedCount: result.deletedCount,
+        };
     };
 }
