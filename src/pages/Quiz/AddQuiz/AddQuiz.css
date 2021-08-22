@@ -21,11 +21,11 @@
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
 }
 
-.add__quiz--head{
+.add__quiz--head {
   text-align: center;
   margin-bottom: 4rem;
   font-size: 1.75rem;
-  padding: 1rem .5rem;
+  padding: 1rem 0.5rem;
   background-color: var(--light-primary-purple);
   color: white;
   border-radius: 5px;
@@ -36,7 +36,7 @@
 }
 
 .quiz__question--field {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   border: 1px solid #222;
   border-radius: 5px;
   padding: 1.5rem;
@@ -74,4 +74,23 @@
   padding: 10rem 5rem;
   display: flex;
   justify-content: center;
+}
+
+.slider__btn--container {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.slider__btn {
+  flex: 1;
+  background-color: var(--light-primary-purple);
+  text-align: center;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.slider__btn:first-child {
+  margin-right: 2rem;
 }
