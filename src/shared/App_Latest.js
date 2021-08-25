@@ -11,6 +11,7 @@ import {
   Class,
   SingleQuiz,
   QuizList,
+  AddQuiz,
 } from "./../pages/index";
 
 class App extends React.Component {
@@ -19,6 +20,7 @@ class App extends React.Component {
     return (
       <Layout>
         <Switch>
+          <Route path="/quiz/add" exact component={AddQuiz} />
           <Route path="/quiz/:qid" exact component={SingleQuiz} />
           <Route path="/quiz" exact component={QuizList} />
           <Route path="/class" exact component={Class} />
