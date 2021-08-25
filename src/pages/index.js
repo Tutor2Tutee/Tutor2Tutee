@@ -7,3 +7,4 @@ export { default as About } from "./About/About";
 export { default as SingleQuiz } from "./Quiz/SingleQuiz/SingleQuiz";
 export { default as QuizList } from "./Quiz/QuizList/QuizList";
 export { default as AddQuiz } from "./Quiz/AddQuiz/AddQuiz";
+export { default as Dashboard } from "./Dashboard/Dashboard";

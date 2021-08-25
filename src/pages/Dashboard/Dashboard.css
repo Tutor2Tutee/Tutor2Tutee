@@ -1,0 +1,106 @@
+.dashboard {
+  min-height: 90vh;
+  background-color: #ededed;
+  color: #eee;
+  padding: 7.5rem 20rem;
+}
+
+.dashboard__user {
+  display: flex;
+  padding: 3rem 5rem;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #3b01e9, #240090, #240090);
+  border-radius: 10px;
+}
+
+.dashboard__user--main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dashboard__user--main img {
+  width: 7.5rem;
+  height: 7.5rem;
+  object-fit: contain;
+  margin-bottom: 2rem;
+}
+
+.dashboard__user--main h1 {
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+}
+
+.dashboard__user--details {
+  line-height: 2;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  text-align: right;
+}
+
+.dashboard__tools {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+}
+
+.dashboard__tools--container {
+  border-radius: 10px;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 30rem;
+  margin-bottom: 4rem;
+  width: 47.5%;
+}
+
+.dashboard__tools--container a {
+  font-size: 1.75rem;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 1rem 4rem;
+  border-radius: 10px;
+  margin-top: 2.5rem;
+  border: 3px solid #eee;
+  background-color: transparent;
+  color: #eee;
+  transition: all 0.2s ease-out;
+}
+
+.dashboard__tools--container a:hover {
+  background-color: #eee;
+}
+
+.dashboard__tools--container-1 a:hover {
+  color: #3dabe2;
+}
+.dashboard__tools--container-2 a:hover {
+  color: #f25f8a;
+}
+.dashboard__tools--container-3 a:hover {
+  color: #53caa7;
+}
+.dashboard__tools--container-4 a:hover {
+  color: #fbb04b;
+}
+
+.dashboard__tools--container:first-child,
+.dashboard__tools--container:nth-child(3) {
+  margin-right: 5%;
+}
+
+.dashboard__tools--container-1 {
+  background: linear-gradient(to right, #4ed7dc, #3dabe2, #5782e8);
+}
+.dashboard__tools--container-2 {
+  background: linear-gradient(to right, #f15e99, #f25f8a, #f36d7b);
+}
+.dashboard__tools--container-3 {
+  background: linear-gradient(to right, #61dd99, #53caa7, #44b8b2);
+}
+.dashboard__tools--container-4 {
+  background: linear-gradient(to right, #ffce44, #fbb04b, #f78f52);
+}
