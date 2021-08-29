@@ -21,6 +21,13 @@
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
 }
 
+.new__class--form h1 {
+  color: #222222;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
 .new__class--form button {
   background-color: var(--light-primary-purple);
   color: white;
