@@ -16,6 +16,9 @@ const QuizList = () => {
       <section className="quizlist__main">
         <div className="quizlist__h1--container">
           <h1 className="quizlist__h1">Quiz</h1>
+          <Link to="/quiz/add" className="quizlist__a">
+            Add Quiz
+          </Link>
         </div>
         <div className="quizlist__container">
           {QUIZ_LIST.map((item) => (
