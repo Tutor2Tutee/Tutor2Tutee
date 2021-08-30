@@ -1,0 +1,28 @@
+.create__classes {
+  min-height: 85vh;
+}
+
+.create__classes--main {
+  padding-bottom: 10rem;
+}
+
+.create__classes--main h1 {
+  font-size: 1.4rem;
+  text-align: center;
+  color: #222222;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.all__classes--h1 {
+  margin-top: 10rem;
+}
+
+.create__classes--list {
+  padding: 5rem 7.5rem;
+  padding-top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

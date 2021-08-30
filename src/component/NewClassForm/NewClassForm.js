@@ -2,14 +2,29 @@ import React, { useState } from "react";
 import "./NewClassForm.css";
 import InputField from "./../UI/InputField/InputField";
 
-function NewClassForm() {
+function NewClassForm(props) {
   const [ClassName, setClassName] = useState("");
   const [ClassType, setClassType] = useState("");
   const [ClassDescription, setClassDescription] = useState("");
 
+  const onNewClassHandler = (event) => {
+    event.preventDefault();
+    const classData = {
+      name: ClassName,
+      classType: ClassType,
+      description: ClassDescription,
+    };
+    console.log(classData);
+
+    setClassName("");
+    setClassType("");
+    setClassDescription("");
+    props.closeForm();
+  };
+
   return (
     <div className="new__class--container">
-      <form className="new__class--form">
+      <form onSubmit={onNewClassHandler} className="new__class--form">
         <h1>Add New Class</h1>
         <InputField
           type="text"
@@ -29,7 +44,7 @@ function NewClassForm() {
           onChange={(event) => setClassDescription(event.target.value)}
           value={ClassDescription}
         />
-        <button type="button">Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

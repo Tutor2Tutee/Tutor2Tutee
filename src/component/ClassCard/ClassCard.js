@@ -21,7 +21,7 @@ const COLOR_GRAD = [
   },
 ];
 
-function ClassCard({ number }) {
+function ClassCard({ number, isAllClass }) {
   return (
     <div
       style={{ background: COLOR_GRAD[number].bg }}
@@ -44,6 +44,18 @@ function ClassCard({ number }) {
       <Link to="/class/all/id" style={{ color: COLOR_GRAD[number].col }}>
         More Details
       </Link>
+      {isAllClass && (
+        <Link
+          to="/class/join/id"
+          style={{
+            color: COLOR_GRAD[number].col,
+            marginLeft: "1rem",
+            padding: ".5rem 3rem",
+          }}
+        >
+          Join
+        </Link>
+      )}
     </div>
   );
 }
