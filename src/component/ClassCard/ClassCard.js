@@ -29,7 +29,7 @@ function ClassCard({ number, isAllClass }) {
     >
       <ul>
         <li>Name : Python Masterclass</li>
-        <li>Teacher : Test Test</li>
+        <li>Tutor : Test Test</li>
         <li>Number of Listners : 10/10</li>
         <li>Rating : 5</li>
         <li>Class Type : Online Lecture</li>
