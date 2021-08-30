@@ -5,6 +5,7 @@ export { default as Feature } from "./Feature/Feature";
 export { default as Class } from "./Class/Class";
 export { default as CreatedClasses } from "./Class/CreatedClasses/CreatedClasses";
 export { default as AppointedClasses } from "./Class/AppointedClasses/AppointedClasses";
+export { default as SingleClass } from "./Class/SingleClass/SingleClass";
 export { default as AllClasses } from "./Class/AllClasses/AllClasses";
 export { default as About } from "./About/About";
 export { default as SingleQuiz } from "./Quiz/SingleQuiz/SingleQuiz";

@@ -16,6 +16,7 @@ import {
   CreatedClasses,
   AppointedClasses,
   AllClasses,
+  SingleClass,
 } from "./../pages/index";
 
 class App extends React.Component {
@@ -31,7 +32,7 @@ class App extends React.Component {
           <Route path="/class/created" exact component={CreatedClasses} />
           <Route path="/class/appointed" exact component={AppointedClasses} />
           <Route path="/class/all" exact component={AllClasses} />
-          {/*<Route path="/class/all/:id" exact component={Class} /> */}
+          <Route path="/class/all/:id" exact component={SingleClass} />
           <Route path="/class" exact component={Class} />
           <Route path="/about" exact component={About} />
           <Route path="/feature" exact component={Feature} />

@@ -46,7 +46,7 @@ function ClassCard({ number, isAllClass }) {
       </Link>
       {isAllClass && (
         <Link
-          to="/class/join/id"
+          to="/class/all/id"
           style={{
             color: COLOR_GRAD[number].col,
             marginLeft: "1rem",
