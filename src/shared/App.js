@@ -18,6 +18,7 @@ import {
   AllClasses,
   SingleClass,
   MyTutor,
+  MyTutee,
 } from "./../pages/index";
 
 class App extends React.Component {
@@ -27,6 +28,7 @@ class App extends React.Component {
       <Layout>
         <Switch>
           <Route path="/my_tutor" exact component={MyTutor} />
+          <Route path="/my_tutee" exact component={MyTutee} />
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/quiz/add" exact component={AddQuiz} />
           <Route path="/quiz/:qid" exact component={SingleQuiz} />

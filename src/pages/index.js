@@ -13,3 +13,4 @@ export { default as QuizList } from "./Quiz/QuizList/QuizList";
 export { default as AddQuiz } from "./Quiz/AddQuiz/AddQuiz";
 export { default as Dashboard } from "./Dashboard/Dashboard";
 export { default as MyTutor } from "./MyTutor/MyTutor";
+export { default as MyTutee } from "./MyTutee/MyTutee";
