@@ -1,5 +1,5 @@
 import { IsNumber, IsString, Max, Min } from 'class-validator';
-import { ClassType } from '../schemas/class.schema';
+import { ClassType } from '../../common/schemas/class.schema';
 
 export class CreateClassDto {
     @IsString()
@@ -15,4 +15,8 @@ export class CreateClassDto {
 
     @IsString()
     readonly description: string;
+
+    @IsNumber()
+    @Min(0)
+    readonly max_capacity: number;
 }

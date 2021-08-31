@@ -1,13 +1,14 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
     Post,
-    UseGuards,
     Request,
+    UseGuards,
 } from '@nestjs/common';
 import { ClassesService } from './classes.service';
-import { Class } from './schemas/class.schema';
+import { Class } from '../common/schemas/class.schema';
 import { CreateClassDto } from './dto/create.class.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -25,6 +26,23 @@ export class ClassesController {
     @UseGuards(JwtAuthGuard)
     @Post('/')
     async create(@Request() req, @Body() classData: CreateClassDto) {
-        return await this.classesService.create(classData, req.user.userId);
+        return await this.classesService.create(classData, req.user._id);
+    }
+
+    @Get('/:classId')
+    async getOne(@Request() { reqClass }): Promise<Class> {
+        return reqClass;
+    }
+
+    @Post('/:classId')
+    @UseGuards(JwtAuthGuard)
+    async join(@Request() { user, reqClass }) {
+        return this.classesService.join(user, reqClass);
+    }
+
+    @Delete('/:classId')
+    @UseGuards(JwtAuthGuard)
+    async delete(@Request() { user, reqClass }) {
+        return this.classesService.delete(user, reqClass);
     }
 }

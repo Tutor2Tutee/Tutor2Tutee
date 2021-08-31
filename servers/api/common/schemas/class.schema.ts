@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { User } from '../../users/schemas/user.schema';
+import { User } from './user.schema';
 
 export type ClassDocument = Class & Document;
 
@@ -8,13 +8,12 @@ export type ClassType =
     | 'recordedVideo'
     | 'onlineMeeting'
     | 'offlineMeeting'
-    | 'Question&Answer';
+    | 'question&Answer';
+
+export type ClassState = 'Pending' | 'Processing' | 'Ended';
 
 @Schema()
 export class Class {
-    @Prop()
-    id: mongoose.Schema.Types.ObjectId;
-
     @Prop({ required: true })
     name: string;
 
@@ -34,10 +33,20 @@ export class Class {
     @Prop({ required: true })
     description: string;
 
-    @Prop()
+    @Prop({ required: true, min: 0 })
+    max_capacity: number;
+
+    @Prop({ default: 'Pending' })
+    state: ClassState;
+
+    @Prop({
+        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    })
     teacher: User;
 
-    @Prop()
+    @Prop({ types: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
     listener: User[];
 }
 
