@@ -5,7 +5,7 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from '../users/schemas/user.schema';
+import { User, UserSchema } from '../common/schemas/user.schema';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
