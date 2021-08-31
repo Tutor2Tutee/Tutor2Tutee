@@ -1,6 +1,6 @@
-import { IsDateString, IsEnum, IsOptional, IsString } from 'class-validator';
-import { UserType } from '../schemas/user.schema';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsDateString, IsOptional, IsString } from 'class-validator';
+import { UserType } from '../../common/schemas/user.schema';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateUserDto {
     // password is not for update

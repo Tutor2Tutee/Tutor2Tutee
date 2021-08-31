@@ -1,19 +1,14 @@
 import {
     ConflictException,
-    HttpCode,
-    HttpException,
     Injectable,
     NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDocument } from './schemas/user.schema';
+import { User, UserDocument } from '../common/schemas/user.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create.user.dto';
 import * as bcrypt from 'bcrypt';
 import { UpdateUserDto } from './dto/update.user.dto';
-
-const getHash = async (str: string, rounds: number): Promise<String> =>
-    await bcrypt.hash(str, rounds);
 
 @Injectable()
 export class UsersService {
@@ -24,9 +19,13 @@ export class UsersService {
     create = async (userData: CreateUserDto) => {
         const { password, ...result } = userData;
         const rounds = 10;
-        result['password'] = await getHash(password, rounds);
-        const createdUser = new this.userModel(result);
-        return createdUser.save();
+        result['password'] = await bcrypt.hash(password, rounds);
+        try {
+            const createdUser = new this.userModel(result);
+            return createdUser.save();
+        } catch (e) {
+            throw new ConflictException(e);
+        }
     };
 
     findOneByEmail = async (email: string): Promise<User> => {
@@ -54,12 +53,12 @@ export class UsersService {
         };
 
         const result = await updateUser(_id);
-        if (result.n === 0) throw new NotFoundException(`id ${_id} not found`);
         return {
             message: `successfully modified ${result.nModified} element`,
             nModified: result.nModified,
         };
     };
+
     deleteOneById = async (_id: string) => {
         const deleteUser = async (_id: string) => {
             try {
@@ -75,5 +74,9 @@ export class UsersService {
             message: `successfully deleted user ${_id}`,
             deletedCount: result.deletedCount,
         };
+    };
+
+    findAll = async () => {
+        return this.userModel.find({});
     };
 }

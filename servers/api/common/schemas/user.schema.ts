@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Class } from '../../classes/schemas/class.schema';
+import { Class } from './class.schema';
 import * as mongoose from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -9,10 +9,6 @@ export type UserType = 'Admin' | 'User';
 
 @Schema()
 export class User {
-    @Prop({ type: mongoose.Schema.Types.ObjectId })
-    @ApiProperty({ type: mongoose.Schema.Types.ObjectId })
-    id: mongoose.Schema.Types.ObjectId;
-
     @Prop({ unique: true, required: true })
     @ApiProperty()
     email: string;
@@ -30,7 +26,7 @@ export class User {
 
     @Prop({ min: 0, default: 0 })
     @ApiProperty()
-    point: Number;
+    point: number;
 
     @Prop({ default: 'User' })
     @ApiProperty()
