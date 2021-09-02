@@ -1,15 +1,27 @@
-.classcard__container{
-    padding: 2rem;
-    width: 60rem;
-    color: var(--light-primary-white);
-    border-radius: 7px;
-    background: linear-gradient(to right bottom,var(--night-primary-purple),var(--night-secondary-purple-dark-1));
-    box-shadow: 0 1rem 2rem rgba(0,0,0,.3);
-    margin-bottom: 2rem;
+.create__classes--card {
+  padding: 4rem;
+  text-align: center;
+  width: 30rem;
+  height: 35rem;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.25rem;
+  line-height: 2;
+  margin: 2rem;
 }
 
-.classcard__container p{
-    margin: .75rem 0;
-    font-weight: bold;
-    font-size: 1.25rem;
+.create__classes--card ul {
+  font-weight: bold;
+  list-style: none;
+}
+
+.create__classes--card a {
+  display: inline-block;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  padding: 0.5rem 2rem;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border-radius: 10px;
 }

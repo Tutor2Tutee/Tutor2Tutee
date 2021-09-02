@@ -1,30 +1,55 @@
-.class__container{
-    min-height: 85vh;
-}
-
-.class__make--button{
-    padding: 3rem;
+.class_type{
+    height: 85vh;
     display: flex;
     justify-content: center;
-}
-.class__make--button button{
-    padding: 1rem;
-    border-radius: 5px;
-    font-weight: bold;
-    border:none;
-    cursor: pointer;
-    transition: all .4s;
-    background-color: var(--night-primary-purple);
-    color: var(--light-primary-white);
-}
-
-.class__make--button button:hover{
-    background-color: var(--night-secondary-purple-dark-1);
-}
-
-.class__main--ul{
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+}
+
+.class_type--container{
+    background: linear-gradient(to right, #3b01e9, #240090, #240090);
+    margin-right: 2rem;
+    padding: 2rem;
+    height: 20rem;
+    width: 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    color: #eee;
+}
+
+.class_type--container a{
+    padding: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    transition: all .4s;
+}
+
+.class_type--container a{
+    padding: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    transition: all .4s;
+}
+
+.class_type--container a:hover{
+    background-color: white;
+    color: #240090;
+}
+
+.class_type--container p{
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    font-weight: bold;
 }

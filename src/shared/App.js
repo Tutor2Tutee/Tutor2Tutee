@@ -1,42 +1,52 @@
 import React from "react";
-import {Route, Switch} from 'react-router-dom'
-import {Home, About, Class, Login, Register,Dashboard} from "../routes";
-import {Header, Footer} from "../components/index.js";
-import "./../styles/styles.css"
-import * as actionCreators from './../store/actions/auth'
-import { connect } from "react-redux";
+import { Switch, Route } from "react-router-dom";
+
+import Layout from "./../component/Layout/Layout";
+import {
+  About,
+  Feature,
+  Home,
+  Login,
+  Signup,
+  Class,
+  SingleQuiz,
+  QuizList,
+  AddQuiz,
+  Dashboard,
+  CreatedClasses,
+  AppointedClasses,
+  AllClasses,
+  SingleClass,
+  MyTutor,
+  MyTutee,
+} from "./../pages/index";
 
 class App extends React.Component {
-    componentDidMount(){
-        const token = localStorage.getItem("t2t-token")
-        if(token){
-            this.props.onAuthenticated(token)
-        }
-    }
-    // 라우팅은 여기서 진행
-    render() {
-        return (
-            <div className="App">
-                <Route path={'/'} component={Header} />
-                <Route exact path='/' component={Home}/>
-                <Route exact path='/user/dashboard' component={Dashboard}/>
-                <Route path='/user/login' component={Login}/>
-                <Route path='/user/register' component={Register}/>
-                <Switch>
-                    <Route path={'/about/:name'} component={About}/>
-                    <Route path='/about' component={About}/>
-                </Switch>
-                <Route path={'/class'} component={Class} />
-                <Route path={'/'} component={Footer}/>
-            </div>
-        );
-    }
+  // 라우팅은 여기서 진행
+  render() {
+    return (
+      <Layout>
+        <Switch>
+          <Route path="/my_tutor" exact component={MyTutor} />
+          <Route path="/my_tutee" exact component={MyTutee} />
+          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/quiz/add" exact component={AddQuiz} />
+          <Route path="/quiz/:qid" exact component={SingleQuiz} />
+          <Route path="/quiz" exact component={QuizList} />
+          <Route path="/class/created" exact component={CreatedClasses} />
+          <Route path="/class/appointed" exact component={AppointedClasses} />
+          <Route path="/class/all" exact component={AllClasses} />
+          <Route path="/class/all/:id" exact component={SingleClass} />
+          <Route path="/class" exact component={Class} />
+          <Route path="/about" exact component={About} />
+          <Route path="/feature" exact component={Feature} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/" exact component={Home} />
+        </Switch>
+      </Layout>
+    );
+  }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onAuthenticated:(token) => dispatch(actionCreators.authChecker(token))
-    }
-}
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;
