@@ -7,12 +7,20 @@
 .notfound_container h1{
   text-align: center;
 }
+
+.notfound_para {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
 .error-container {
   text-align: center;
   font-size: 180px;
   font-family: 'Catamaran', sans-serif;
   font-weight: 800;
-  margin: 60px 15px;
+  margin: 40px 15px;
 }
 .error-container > span {
   display: inline-block;

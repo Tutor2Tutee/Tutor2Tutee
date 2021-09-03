@@ -10,6 +10,7 @@ const NotFound = () => {
         <span><span class="screen-reader-text">0</span></span>
         <span>4</span>
       </section>
+      <p className="notfound_para">Sorry, this page isn't available</p>
       <div class="link-container">
         <Link to="/dashboard" class="more-link">Go To Dashboard</Link>
       </div>
