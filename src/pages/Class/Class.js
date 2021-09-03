@@ -1,7 +1,6 @@
-import React from 'react'
-import './Class.css'
-import { Link } from 'react-router-dom'
-
+import React from 'react';
+import './Class.css';
+import { Link } from 'react-router-dom';
 
 function Class() {
     return (
@@ -15,7 +14,7 @@ function Class() {
                 <p>List of classes appointed to you.</p>
             </div>
         </div>
-    )
+    );
 }
 
-export default Class
+export default Class;

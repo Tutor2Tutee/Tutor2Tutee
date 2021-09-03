@@ -1,16 +1,16 @@
 const initialState = {
-  isDark: false,
-}
+    isDark: false,
+};
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'toggle_theme':
-      return {
-        isDark: !state.isDark,
-      }
-    default:
-      return state
-  }
-}
+    switch (action.type) {
+        case 'toggle_theme':
+            return {
+                isDark: !state.isDark,
+            };
+        default:
+            return state;
+    }
+};
 
-export default reducer
+export default reducer;
