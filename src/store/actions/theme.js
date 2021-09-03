@@ -1,7 +1,7 @@
 const toggleTheme = () => {
-  return {
-    type: 'toggle_theme',
-  }
-}
+    return {
+        type: 'toggle_theme',
+    };
+};
 
-export default toggleTheme
+export default toggleTheme;

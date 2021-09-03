@@ -1,58 +1,58 @@
 .signup__container {
-  min-height: 85vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--night-primary-black);
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--night-primary-black);
 }
 .signup__container.light {
-  background-color: var(--light-primary-white);
+    background-color: var(--light-primary-white);
 }
 
 .signup__form {
-  width: 45rem;
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 10px;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
-  background-color: #1c1d21;
+    width: 45rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+    background-color: #1c1d21;
 }
 
 .signup__form.light {
-  background-color: var(--light-primary-white);
+    background-color: var(--light-primary-white);
 }
 
 .signup__form--button {
-  background-color: var(--light-primary-purple);
-  color: white;
-  padding: 0.75rem;
-  margin-top: 1.25rem;
-  font-weight: bold;
-  border: none;
-  outline: none;
-  font-family: inherit;
-  cursor: pointer;
-  border: 2px solid var(--light-primary-purple);
-  transition: all 0.4s;
+    background-color: var(--light-primary-purple);
+    color: white;
+    padding: 0.75rem;
+    margin-top: 1.25rem;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    cursor: pointer;
+    border: 2px solid var(--light-primary-purple);
+    transition: all 0.4s;
 }
 
 .signup__form--button:hover {
-  background-color: white;
-  color: var(--night-primary-purple);
+    background-color: white;
+    color: var(--night-primary-purple);
 }
 
 .signup__form--p {
-  font-size: 1.1rem;
-  margin: 0.25rem 0;
-  margin-left: 2px;
-  font-weight: bold;
-  color: var(--light-secondary-grey);
+    font-size: 1.1rem;
+    margin: 0.25rem 0;
+    margin-left: 2px;
+    font-weight: bold;
+    color: var(--light-secondary-grey);
 }
 
 @media (max-width: 345px) {
-  .signup__form {
-    width: 40rem;
-  }
+    .signup__form {
+        width: 40rem;
+    }
 }

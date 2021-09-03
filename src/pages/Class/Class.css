@@ -1,11 +1,11 @@
-.class_type{
+.class_type {
     height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.class_type--container{
+.class_type--container {
     background: linear-gradient(to right, #3b01e9, #240090, #240090);
     margin-right: 2rem;
     padding: 2rem;
@@ -19,7 +19,7 @@
     color: #eee;
 }
 
-.class_type--container a{
+.class_type--container a {
     padding: 1rem;
     color: white;
     font-size: 1.5rem;
@@ -28,10 +28,10 @@
     border: 2px solid #fff;
     border-radius: 10px;
     margin-bottom: 1.5rem;
-    transition: all .4s;
+    transition: all 0.4s;
 }
 
-.class_type--container a{
+.class_type--container a {
     padding: 1rem;
     color: white;
     font-size: 1.5rem;
@@ -40,15 +40,15 @@
     border: 2px solid #fff;
     border-radius: 10px;
     margin-bottom: 1.5rem;
-    transition: all .4s;
+    transition: all 0.4s;
 }
 
-.class_type--container a:hover{
+.class_type--container a:hover {
     background-color: white;
     color: #240090;
 }
 
-.class_type--container p{
+.class_type--container p {
     font-size: 1.25rem;
     letter-spacing: 2px;
     font-weight: bold;

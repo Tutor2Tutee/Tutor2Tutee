@@ -1,40 +1,40 @@
 .create__classes {
-  min-height: 85vh;
+    min-height: 85vh;
 }
 
 .create__classes--head {
-  padding: 3rem 0;
+    padding: 3rem 0;
 }
 
 .create__classes--head button {
-  margin: 0 auto;
-  display: block;
-  background-color: var(--night-primary-purple);
-  padding: 1rem;
-  color: white;
-  font-weight: bold;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    background-color: var(--night-primary-purple);
+    padding: 1rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 .create__classes--main {
-  padding-bottom: 10rem;
+    padding-bottom: 10rem;
 }
 
 .create__classes--main h1 {
-  font-size: 1.4rem;
-  text-align: center;
-  color: #222222;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #222222;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
 }
 
 .create__classes--list {
-  padding: 5rem 7.5rem;
-  padding-top: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+    padding: 5rem 7.5rem;
+    padding-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
