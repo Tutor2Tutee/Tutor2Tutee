@@ -1,6 +1,6 @@
 export const toggleLang = (lang) => {
     return {
-        type:"toggle_lang",
-        lang
-    }
-}
+        type: 'toggle_lang',
+        lang,
+    };
+};

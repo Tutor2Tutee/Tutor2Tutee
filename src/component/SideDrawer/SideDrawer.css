@@ -1,4 +1,4 @@
-.sidedrawer__container{
+.sidedrawer__container {
     display: none;
     position: fixed;
     top: 0;
@@ -6,11 +6,11 @@
     z-index: 2000;
     height: 100vh;
     width: 80%;
-    transition: all .4s;
+    transition: all 0.4s;
     background-color: #141414;
 }
 
-.sidedrawer__container ul{
+.sidedrawer__container ul {
     margin-top: 10rem;
     list-style: none;
     display: flex;
@@ -18,13 +18,13 @@
     align-items: center;
 }
 
-.sidedrawer__container ul a{
+.sidedrawer__container ul a {
     color: var(--light-primary-white);
     font-size: 1.75rem;
     margin-bottom: 2rem;
 }
 
-.sd-theme-btn-container{
+.sd-theme-btn-container {
     padding: 2rem;
     display: flex;
     justify-content: center;
@@ -40,25 +40,25 @@
     cursor: pointer;
     font-size: 0.8em;
     margin-right: 25px;
-  }
-  
-  .sd-theme-btn.light{
+}
+
+.sd-theme-btn.light {
     background: black;
-    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.8);
-  }
-  
-  .sd-theme-btn.dark{
+    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.8);
+}
+
+.sd-theme-btn.dark {
     background: black;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
-  }
-  
-  .sd-theme-btn h1 {
+}
+
+.sd-theme-btn h1 {
     min-width: max-content;
     padding: 0 60px;
     color: white;
-  }
-  
-  .sd-slider {
+}
+
+.sd-slider {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -71,9 +71,9 @@
     transform: translate(0, -50%);
     transition: 250ms all;
     cursor: pointer;
-  }
-  
-  .sd-slider::before {
+}
+
+.sd-slider::before {
     content: '';
     width: 100%;
     height: 100%;
@@ -84,19 +84,19 @@
     left: 0;
     transform: translate(0, -50%);
     transition: 250ms all;
-  }
-  
-  .sd-slider.dark {
+}
+
+.sd-slider.dark {
     transform: translate(90%, -50%);
-  
-  }
-  .sd-slider.dark::before {
+}
+
+.sd-slider.dark::before {
     transform: translate(-30%, -70%);
     background-color: black;
-  }
+}
 
-@media(max-width:800px){
-    .sidedrawer__container{
-        display:inline-block;
+@media (max-width: 800px) {
+    .sidedrawer__container {
+        display: inline-block;
     }
 }
