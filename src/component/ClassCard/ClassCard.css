@@ -1,27 +1,27 @@
 .create__classes--card {
-  padding: 4rem;
-  text-align: center;
-  width: 30rem;
-  height: 35rem;
-  border-radius: 5px;
-  color: white;
-  font-size: 1.25rem;
-  line-height: 2;
-  margin: 2rem;
+    padding: 4rem;
+    text-align: center;
+    width: 30rem;
+    height: 35rem;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.25rem;
+    line-height: 2;
+    margin: 2rem;
 }
 
 .create__classes--card ul {
-  font-weight: bold;
-  list-style: none;
+    font-weight: bold;
+    list-style: none;
 }
 
 .create__classes--card a {
-  display: inline-block;
-  font-weight: bold;
-  margin-top: 1.5rem;
-  padding: 0.5rem 2rem;
-  background-color: white;
-  color: black;
-  text-decoration: none;
-  border-radius: 10px;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    padding: 0.5rem 2rem;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 10px;
 }

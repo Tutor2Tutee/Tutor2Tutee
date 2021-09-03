@@ -1,12 +1,12 @@
 .header__ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  margin-right: 0.75rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-right: 0.75rem;
 }
 
 @media (max-width: 800px) {
-  .header__nav {
-    display: none;
-  }
+    .header__nav {
+        display: none;
+    }
 }

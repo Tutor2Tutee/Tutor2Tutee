@@ -1,30 +1,30 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Root from './client/Root'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Root from './client/Root';
 
-import reportWebVitals from './reportWebVitals'
-import { createStore, combineReducers } from 'redux'
-import { Provider } from 'react-redux'
-import authReducer from './store/reducers/auth'
-import langReducer from './store/reducers/language'
-import themeReducer from './store/reducers/theme'
+import reportWebVitals from './reportWebVitals';
+import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import authReducer from './store/reducers/auth';
+import langReducer from './store/reducers/language';
+import themeReducer from './store/reducers/theme';
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  lang: langReducer,
-  theme: themeReducer,
-})
+    auth: authReducer,
+    lang: langReducer,
+    theme: themeReducer,
+});
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Root />
-  </Provider>,
-  document.getElementById('root')
-)
+    <Provider store={store}>
+        <Root />
+    </Provider>,
+    document.getElementById('root'),
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
+reportWebVitals();

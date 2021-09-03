@@ -1,23 +1,23 @@
 .user__profile--card {
-  margin: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  width: 30rem;
-  height: 32.5rem;
-  border-radius: 5px;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  color: #eeeeee;
-  line-height: 1.75;
-  letter-spacing: 4px;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: 30rem;
+    height: 32.5rem;
+    border-radius: 5px;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    color: #eeeeee;
+    line-height: 1.75;
+    letter-spacing: 4px;
 }
 
 .user__profile--card h1 {
-  border-bottom: 1px solid #eeeeee;
-  margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 0.5rem;
 }
 
 .user__profile--card img {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
