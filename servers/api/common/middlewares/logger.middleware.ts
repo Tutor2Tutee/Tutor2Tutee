@@ -10,9 +10,10 @@ export class LoggerMiddleware implements NestMiddleware {
         const userAgent = req.get('user-agent') || '';
         res.on('finish', () => {
             const { statusCode } = res;
-            const contentLength = res.get('content-length');
+            const contentLength = res.get('content-length') || 0;
             this.httpLogger.log(
-                `${method} ${originalUrl} ${statusCode} ${contentLength} - ${userAgent} ${ip}`,
+                // `${method} ${originalUrl} ${statusCode} ${contentLength} - ${userAgent} ${ip}`,
+                `${method} ${statusCode} ${originalUrl} ${contentLength} `,
             );
         });
 

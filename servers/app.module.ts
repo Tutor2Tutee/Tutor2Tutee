@@ -1,25 +1,32 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ApiModule } from './api/api.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { LoggerMiddleware } from './api/common/middlewares/logger.middleware';
-
-const dbOpt = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: true,
-    useCreateIndex: true,
-    dbName: 'Tutor2TuteeJEST',
-};
 
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         ApiModule,
-        MongooseModule.forRoot(
-            `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_URL}/`,
-            dbOpt,
-        ),
+        ServeStaticModule.forRoot({
+            // root/build -> static serve
+            rootPath: join(__dirname, '..', 'build'),
+            exclude: ['/api*'],
+        }),
+        MongooseModule.forRootAsync({
+            imports: [ConfigModule],
+            useFactory: async (configService: ConfigService) => ({
+                uri: configService.get<string>('DB_URL'),
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useFindAndModify: true,
+                useCreateIndex: true,
+                dbName: 'Tutor2TuteeJEST',
+            }),
+            inject: [ConfigService],
+        }),
     ],
     controllers: [],
     providers: [],

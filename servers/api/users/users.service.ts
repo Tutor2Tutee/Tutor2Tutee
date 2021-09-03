@@ -22,7 +22,7 @@ export class UsersService {
         result['password'] = await bcrypt.hash(password, rounds);
         try {
             const createdUser = new this.userModel(result);
-            return createdUser.save();
+            return await createdUser.save();
         } catch (e) {
             throw new ConflictException(e);
         }
