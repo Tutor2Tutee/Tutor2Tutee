@@ -19,51 +19,51 @@ function GithubCard({
                 <a href={htmlURL} target="_blank" rel="noopener">
                     <img
                         id="github-logo"
-          '     '       src="https://i.ibb.co/frv5pB'/github-logo'png"
-                        alt="github-lo'o"
-   '     '        '     border="0"
+                        src="https://i.ibb.co/frv5pB3/github-logo.png"
+                        alt="github-logo"
+                        border="0"
                     />
-               '</a>
-      '         <div className="card'header">
-                    <div classN'me="card-img-wrapper">
-      '           '     <img src={avatarURL} />
-   ' '              </div>
+                </a>
+                <div className="card-header">
+                    <div className="card-img-wrapper">
+                        <img src={avatarURL} />
+                    </div>
                     <h1>
                         <a
-   '           '            className="card-title"
-  '                '        href={htmlURL}
+                            className="card-title"
+                            href={htmlURL}
                             target="_blank"
                             rel="noopener"
                         >
-                            {na'e}
-       '                </a>
+                            {name}
+                        </a>
                     </h1>
-                    <div classNa'e="car'-responsename">
-                 '      <a'href={htmlURL} target="_blank" rel="noopener">
+                    <div className="card-responsename">
+                        <a href={htmlURL} target="_blank" rel="noopener">
                             @ {login}
                         </a>
                     </div>
-           '        <p classN'me="card-desc">{bio}</p>
-                    <div c'assNam'="car'-footer"'
+                    <p className="card-desc">{bio}</p>
+                    <div className="card-footer">
                         <div className="footer-box">
                             <div className="box-wrapper">
-                 '         '    <div className="count">{followers}</div>
- '           '                  <div className="box-tex'">Follower'</div>
+                                <div className="count">{followers}</div>
+                                <div className="box-text">Followers</div>
                             </div>
-   '           '            <div className="box-wrapper">
-       '     '                  <div className="count">{following}</div>
-       '        '               <div className="box-text">Following</div>
+                            <div className="box-wrapper">
+                                <div className="count">{following}</div>
+                                <div className="box-text">Following</div>
                             </div>
-   '           '            <div className="box-wrapper">
-       '     '                  <div className="count">{public_repos}</div>
-    '        '                  <div className="box-text">Repositories</div>
-                            </di'>
-         '              </div>
+                            <div className="box-wrapper">
+                                <div className="count">{public_repos}</div>
+                                <div className="box-text">Repositories</div>
+                            </div>
+                        </div>
                     </div>
- '     '        </div>
+                </div>
             </div>
         </div>
     );
 }
 
-export def'ult Gith'bCard;
+export default GithubCard;
