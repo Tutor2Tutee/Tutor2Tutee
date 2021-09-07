@@ -19,6 +19,7 @@ import {
     Signup,
     SingleClass,
     SingleQuiz,
+    NotFound,
 } from './../pages/index';
 
 class App extends React.Component {
@@ -55,6 +56,7 @@ class App extends React.Component {
                     <Route path="/signup" exact component={Signup} />
                     <Route path="/login" exact component={Login} />
                     <Route path="/" exact component={Home} />
+                    <Route component={NotFound} />
                 </Switch>
             </Layout>
         );
