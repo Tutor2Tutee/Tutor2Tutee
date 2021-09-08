@@ -1,1 +1,1 @@
-web: npm run start:server:prod
+web: nest build && npm run react:build && start:server:prod
