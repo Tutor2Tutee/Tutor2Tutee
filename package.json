@@ -58,6 +58,7 @@
     "react:build": "react-scripts build",
     "react:test": "react-scripts servers/tests",
     "react:eject": "react-scripts eject",
+    "build": "nest build && react_scripts build",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
