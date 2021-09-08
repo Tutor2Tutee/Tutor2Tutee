@@ -58,7 +58,7 @@
     "react:build": "react-scripts build",
     "react:test": "react-scripts servers/tests",
     "react:eject": "react-scripts eject",
-    "build": "nest build && react-scripts build",
+    "build": "prettier src -w && nest build && react-scripts build",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
