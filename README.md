@@ -1,6 +1,8 @@
 # [Tutor2Tutee (T2T)](https://tutor2tutee.herokuapp.com)
 
 <div align="center">
+  
+<img src="assets/logo.png" alt="logo" />
 
 [![Node.js CI](https://github.com/jinwoo1225/Tutor2Tutee-Advanced/actions/workflows/node.js.yml/badge.svg)](https://github.com/jinwoo1225/Tutor2Tutee-Advanced/actions/workflows/node.js.yml)
 ![Heroku](https://pyheroku-badge.herokuapp.com/?app=tutor2tutee&style=flat)
