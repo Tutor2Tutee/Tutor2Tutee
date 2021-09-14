@@ -23,7 +23,7 @@ import { LoggerMiddleware } from './api/common/middlewares/logger.middleware';
                 useUnifiedTopology: true,
                 useFindAndModify: true,
                 useCreateIndex: true,
-                dbName: 'Tutor2TuteeJEST',
+                dbName: 'Tutor2Tutee',
             }),
             inject: [ConfigService],
         }),
