@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import * as mongoose from 'mongoose';
+import { SchemaTypes } from 'mongoose';
 import { User } from './user.schema';
 
 export type QuizDocument = Quiz & Document;
@@ -26,7 +26,7 @@ export class Quiz {
 
     @Prop({
         required: true,
-        type: mongoose.Schema.Types.ObjectId,
+        type: SchemaTypes.ObjectId,
         ref: 'User',
     })
     creator: User;

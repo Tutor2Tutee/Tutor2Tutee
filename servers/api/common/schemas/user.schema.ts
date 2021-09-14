@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Class } from './class.schema';
-import * as mongoose from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
+import { SchemaTypes } from 'mongoose';
 
 export type UserDocument = User & Document;
 
@@ -32,11 +32,11 @@ export class User {
     @ApiProperty()
     userType: UserType;
 
-    @Prop({ types: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Class' }] })
+    @Prop({ types: [{ type: SchemaTypes.ObjectId, ref: 'Class' }] })
     @ApiProperty()
     listening: Class[];
 
-    @Prop({ types: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Class' }] })
+    @Prop({ types: [{ type: SchemaTypes.ObjectId, ref: 'Class' }] })
     @ApiProperty()
     teaching: Class[];
 }

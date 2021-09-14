@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { User } from './user.schema';
+import { SchemaTypes, Types } from 'mongoose';
+import { User, UserDocument } from './user.schema';
 
 export type ClassDocument = Class & Document;
 
@@ -14,7 +15,7 @@ export type ClassState = 'Pending' | 'Processing' | 'Ended';
 
 @Schema()
 export class Class {
-    @Prop({ required: true })
+    @Prop({ required: true, unique: true })
     name: string;
 
     @Prop({ default: Date.now })
@@ -41,10 +42,10 @@ export class Class {
 
     @Prop({
         required: true,
-        type: mongoose.Schema.Types.ObjectId,
+        type: SchemaTypes.ObjectId,
         ref: 'User',
     })
-    teacher: User;
+    teacher: UserDocument | string | Types.ObjectId;
 
     @Prop({ types: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
     listener: User[];
