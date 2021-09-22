@@ -3,6 +3,7 @@ import './Signup.css';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import ImagePicker from './../../../component/UI/ImagePicker/ImagePicker';
 import InputField from './../../../component/UI/InputField/InputField';
 import Locale from './../../../locale/language.json';
 
@@ -24,9 +25,14 @@ const Login = () => {
     const [nickname, setNickname] = useState('');
     const [birth, setBirth] = useState('');
     const [error, setError] = useState('');
+    const [profile, setProfile] = useState({ value: null, valid: false });
 
     let isDark = useSelector((state) => state.theme.isDark);
     let language = useSelector((state) => state.lang.language);
+
+    const imageHandler = (image, valid) => {
+        setProfile({ value: image, valid });
+    };
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -36,16 +42,16 @@ const Login = () => {
             return setError('Invalid input');
         }
 
-        event.preventDefault();
+        const data = new FormData();
+        data.append('email', email);
+        data.append('password', password);
+        data.append('nickname', nickname);
+        data.append('birth', birth);
+        data.append('profile', profile);
+
         fetch('/api/user/register', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                email,
-                password,
-                nickname,
-                birth,
-            }),
+            body: data,
         })
             .then((response) => response.json())
             .then((response) => {
@@ -95,6 +101,9 @@ const Login = () => {
                     type="text"
                     placeholder={Locale.signup.signup_birth[language]}
                     onChange={(event) => setBirth(event.target.value)}
+                />
+                <ImagePicker
+                    onPick={(image, valid) => imageHandler(image, valid)}
                 />
                 <p className="signup__form--p">
                     {Locale.signup.signup_login_redirect_1[language]}{' '}
