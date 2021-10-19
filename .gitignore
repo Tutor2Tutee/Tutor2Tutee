@@ -126,3 +126,6 @@ dist
 # IDEA
 .idea/*
 .idea
+
+# build folder
+/server/build/
