@@ -1,0 +1,126 @@
+{
+    "home": {
+        "home_heading": {
+            "en": "Student Oriented Learning & Teaching Platform",
+            "kor": "대학생용 지식공유 플랫폼"
+        },
+        "home_para": {
+            "en": "From Tutee to Tutor, You can do anything",
+            "kor": "Tutee에서 Tutor까지, 무엇이든 할 수 있어요!"
+        },
+        "home_button": {
+            "en": "Get Started",
+            "kor": "시작하기"
+        }
+    },
+    "feature": {
+        "feature_recorded_head": {
+            "en": "Recorded Video",
+            "kor": "비디오 강의"
+        },
+        "feature_recorded_para": {
+            "en": "Utilize the recorded video in your free time to learn Something New",
+            "kor": "여가 시간에 녹화 된 비디오를 활용하여 새로운 것을 배우세요!"
+        },
+        "feature_meeting_head": {
+            "en": "Online & Offline Meeting",
+            "kor": "온라인 및 오프라인 회의"
+        },
+        "feature_meeting_para": {
+            "en": "Offline & Online meeting realtime meeting on Zoom or Skype",
+            "kor": "Zoom 또는 Skype에서 오프라인 및 온라인 회의 실시간 회의를 할수 있어요!"
+        },
+        "feature_attandance_head": {
+            "en": "Attandance Checking",
+            "kor": "출석 체크"
+        },
+        "feature_attandance_para": {
+            "en": "Attendance Checking To Evaluate Tutee",
+            "kor": "튜티들은 출석체크를 통해 평가를 받을 수 있어요!"
+        },
+        "feature_rating_head": {
+            "en": "Rating",
+            "kor": "평가"
+        },
+        "feature_rating_para": {
+            "en": "Tutor Rating System, Used By Tutee To Improve Class Quality",
+            "kor": "튜티는 강의질을 향상 시키기 위해 튜터를 평가 할수있어요!"
+        }
+    },
+    "login": {
+        "login_email": {
+            "en": "Email",
+            "kor": "이메일"
+        },
+        "login_password": {
+            "en": "Password",
+            "kor": "비밀번호"
+        },
+        "login_button": {
+            "en": "Login",
+            "kor": "로그인"
+        },
+        "login_signup_redirect_1": {
+            "en": "New User? Great, you can ",
+            "kor": "회원이 아니라구요? 그럼 "
+        },
+        "login_signup_redirect_2": {
+            "en": "Register",
+            "kor": "회원가입"
+        },
+        "login_signup_redirect_3": {
+            "en": "here.",
+            "kor": "하세요!"
+        }
+    },
+    "signup": {
+        "signup_email": {
+            "en": "Email",
+            "kor": "이메일"
+        },
+        "signup_password": {
+            "en": "Password",
+            "kor": "비밀번호"
+        },
+        "signup_nickname": {
+            "en": "Nickname",
+            "kor": "별명"
+        },
+        "signup_birth": {
+            "en": "Birth (YYYY-MM-DD)",
+            "kor": "생일(YYYY-MM-DD)"
+        },
+        "signup_button": {
+            "en": "Register",
+            "kor": "레지스터"
+        },
+        "signup_login_redirect_1": {
+            "en": "Already a User, you can",
+            "kor": "이미 회원가입이 되어있으시면"
+        },
+        "signup_login_redirect_2": {
+            "en": "Login",
+            "kor": "로그인"
+        },
+        "signup_login_redirect_3": {
+            "en": "here",
+            "kor": "하세요!"
+        }
+    },
+    "class": {
+        "class_heading": {
+            "en": "Make Class",
+            "kor": "수업 만들기"
+        }
+    },
+    "about": {
+        "about_heading": {
+            "en": "What is Tutor2Tutee?",
+            "kor": "Tutor2Tutee란?"
+        },
+        "about_para": {
+            "en": "Tutor2Tutee is an Student oriented Learning & Teaching Platform. The Goal is Teach your Fellow, Learn from your fellow. From Tutee to Tutor, You can do anything. Feel free to contribute to the project.",
+            "kor": "Tutor2Tutee는 대학생용 지식공유 플랫폼입니다. 함께 배우고 가르쳐보세요! 어떤 것이든 가르치고 배울수 있어요!"
+        }
+    }
+}

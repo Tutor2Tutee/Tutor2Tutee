@@ -113,6 +113,7 @@ dist
 /coverage
 
 # production
+/client/build
 /build
 
 # misc
@@ -125,3 +126,6 @@ dist
 # IDEA
 .idea/*
 .idea
+
+# build folder
+/server/build/
