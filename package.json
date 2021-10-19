@@ -1,0 +1,16 @@
+{
+  "name": "tutor2tutee",
+  "version": "0.2.1",
+  "engines": {
+    "node": "16.x"
+  },
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "build": "cd client && react-scripts build && mv build ../server/build && cd ../server && nest build && cd .. && echo 'build finish! enjoy! :)' ",
+    "start": "node ./server/dist/main"
+  }
+}

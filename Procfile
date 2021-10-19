@@ -1,1 +1,1 @@
-web: cd server && npm run start:server:prod
+web: npm run start
