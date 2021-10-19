@@ -48,14 +48,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config servers/tests/jest-e2e.json",
-    "test:e2e:watchAll": "jest --config servers/tests/jest-e2e.json --watchAll"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "test:e2e": "jest --config src/tests/jest-e2e.json",
+    "test:e2e:watchAll": "jest --config src/tests/jest-e2e.json --watchAll"
   },
   "browserslist": {
     "production": [
@@ -102,7 +96,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "servers",
+    "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
