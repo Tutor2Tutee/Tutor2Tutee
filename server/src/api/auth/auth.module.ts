@@ -14,13 +14,16 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         ConfigModule,
         JwtModule.registerAsync({
             imports: [ConfigModule],
+            inject: [ConfigService],
             useFactory: async (configService: ConfigService) => {
+                const expiresInMinutes = configService.get<number>(
+                    'JWT_ACCESS_EXPIRATION_TIME',
+                );
                 return {
-                    secret: configService.get<string>('SECRET'),
-                    signOptions: { expiresIn: '1d' },
+                    secret: configService.get<string>('JWT_ACCESS_SECRET'),
+                    signOptions: { expiresIn: `${expiresInMinutes}m` },
                 };
             },
-            inject: [ConfigService],
         }),
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     ],
