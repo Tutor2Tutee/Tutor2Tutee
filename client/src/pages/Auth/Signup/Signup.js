@@ -49,7 +49,7 @@ const Login = () => {
         data.append('birth', birth);
         data.append('profile', profile);
 
-        fetch('/api/user/register', {
+        fetch('/api/users/register', {
             method: 'POST',
             body: data,
         })
