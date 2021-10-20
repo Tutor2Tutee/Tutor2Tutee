@@ -11,6 +11,8 @@
   ],
   "scripts": {
     "build": "cd client && react-scripts build && mv build ../server/build && cd ../server && nest build && cd .. && echo 'build finish! enjoy! :)' ",
-    "start": "node ./server/dist/main"
+    "start": "node ./server/dist/main",
+    "test": "cd server && npm test",
+    "test:e2e": "cd server && npm run test:e2e"
   }
 }
